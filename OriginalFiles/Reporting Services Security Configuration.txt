@@ -1,0 +1,161 @@
+------------------------------------------------------
+Reporting Services Security Configuration Instructions
+
+8/20/2012
+------------------------------------------------------
+
+The Quality Characteristic Detail Report requires that certain
+security policy settings for Microsoft SQL Server Reporting Services are configured. 
+
+You need to change the security policy file, which is located in the following folder:
+
+	<Microsoft SQL Server Reporting Services installation folder>\Reporting Services\ReportServer\rssrvpolicy.config 
+
+For example, for a Windows 2008 Server 64-bit operating system, the installation folder would be as follows:
+
+	C:\Program Files (x86)\Microsoft SQL Server\MSRS10.MSSQL2008STD
+
+Make the following changes:
+
+1) Add the following SecurityClass element to the set of existing SecurityClass elements:
+ 
+    <SecurityClass Name="UIPermission" Description="System.Security.Permissions.UIPermission, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/> 
+
+2) Add the following PermissionSet element to the existing PermissionSet elements in the NamedPermissionSet tag:
+
+    <PermissionSet
+            class="NamedPermissionSet"
+            version="1"
+            Name="ExecutionWithSQLUI">
+        <IPermission 
+                class="SecurityPermission"
+                version="1"
+                Flags="Execution"
+        />
+        <IPermission 
+                class="SqlClientPermission"
+                version="1"
+                Unrestricted="True"
+        />
+        <IPermission 
+                class="UIPermission"
+                version="1"
+                Unrestricted="True"
+        />
+        <IPermission 
+                class="FileIOPermission"
+                version="1"
+                Unrestricted="True"
+        />                                               
+    </PermissionSet>
+
+
+3) Change <PermissionSetName="Execution" ...> under <CodeGroup> to <PermissionSetName="ExecutionWithSQLUI" ...> as follows:
+      
+    <CodeGroup 
+        class="UnionCodeGroup" 
+                                version="1" 
+                                PermissionSetName="ExecutionWithSQLUI"  <-- CHANGE --> 
+                                Name="Report_Expressions_Default_Permissions" 
+
+The following example shows an updated policy settings file: 
+
+<configuration>
+    <mscorlib>
+        <security>
+            <policy>
+                <PolicyLevel version="1">
+                    <SecurityClasses>
+                       <SecurityClass Name="AllMembershipCondition" Description="System.Security.Policy.AllMembershipCondition, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+                        <SecurityClass Name="AspNetHostingPermission" Description="System.Web.AspNetHostingPermission, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+                        <SecurityClass Name="DnsPermission" Description="System.Net.DnsPermission, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+                        <SecurityClass Name="EnvironmentPermission" Description="System.Security.Permissions.EnvironmentPermission, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+                        <SecurityClass Name="FileIOPermission" Description="System.Security.Permissions.FileIOPermission, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+                        <SecurityClass Name="FirstMatchCodeGroup" Description="System.Security.Policy.FirstMatchCodeGroup, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+                        <SecurityClass Name="IsolatedStorageFilePermission" Description="System.Security.Permissions.IsolatedStorageFilePermission, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+                        <SecurityClass Name="NamedPermissionSet" Description="System.Security.NamedPermissionSet"/>
+                        <SecurityClass Name="PrintingPermission" Description="System.Drawing.Printing.PrintingPermission, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+                        <SecurityClass Name="ReflectionPermission" Description="System.Security.Permissions.ReflectionPermission, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+                        <SecurityClass Name="RegistryPermission" Description="System.Security.Permissions.RegistryPermission, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+                        <SecurityClass Name="SecurityPermission" Description="System.Security.Permissions.SecurityPermission, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+                        <SecurityClass Name="SocketPermission" Description="System.Net.SocketPermission, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+                        <SecurityClass Name="SqlClientPermission" Description="System.Data.SqlClient.SqlClientPermission, System.Data, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+                        <SecurityClass Name="StrongNameMembershipCondition" Description="System.Security.Policy.StrongNameMembershipCondition, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+                        <SecurityClass Name="UnionCodeGroup" Description="System.Security.Policy.UnionCodeGroup, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+                        <SecurityClass Name="UrlMembershipCondition" Description="System.Security.Policy.UrlMembershipCondition, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+                        <SecurityClass Name="WebPermission" Description="System.Net.WebPermission, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+                        <SecurityClass Name="ZoneMembershipCondition" Description="System.Security.Policy.ZoneMembershipCondition, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+                       <SecurityClass Name="UIPermission" Description="System.Security.Permissions.UIPermission, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/> <-- +++ADD THIS SECURITY CLASS NAME+++ -->
+                    </SecurityClasses>
+                    <NamedPermissionSets>
+                        <PermissionSet
+                                class="NamedPermissionSet"
+                                version="1"
+                                Unrestricted="true"
+                                Name="FullTrust"
+                                Description="Allows full access to all resources"
+                        />
+                        <PermissionSet
+                                class="NamedPermissionSet"
+                                version="1"
+                                Name="Nothing"
+                                Description="Denies all resources, including the right to execute"
+                        />
+                        <PermissionSet
+                                class="NamedPermissionSet"
+                                version="1"
+                                Name="Execution">
+                            <IPermission 
+                                    class="SecurityPermission"
+                                    version="1"
+                                    Flags="Execution"
+                            />
+                        </PermissionSet>
+                        <PermissionSet                            <-- +++START OF NEW SECTION+++ -->
+                                class="NamedPermissionSet"
+                                version="1"
+                                Name="ExecutionWithSQLUI">
+                            <IPermission 
+                                    class="SecurityPermission"
+                                    version="1"
+                                    Flags="Execution"
+                            />
+                            <IPermission 
+                                    class="SqlClientPermission"
+                                    version="1"
+                                    Unrestricted="True"
+                            />
+                            <IPermission 
+                                    class="UIPermission"
+                                    version="1"
+                                    Unrestricted="True"
+                            />
+                            <IPermission 
+                                    class="FileIOPermission"
+                                    version="1"
+                                    Unrestricted="True"
+                            />                                               
+                        </PermissionSet>                         <-- +++END OF NEW SECTION+++ -->
+                    </NamedPermissionSets>
+                    <CodeGroup 
+                            class="FirstMatchCodeGroup"
+                            version="1"
+                            PermissionSetName="Nothing">
+                        <IMembershipCondition 
+                                class="AllMembershipCondition"
+                                version="1"
+                        />
+                        <CodeGroup
+                                class="UnionCodeGroup"
+                                version="1"
+                                PermissionSetName="ExecutionWithSQLUI"   <-- +++CHANGE+++ -->
+                                Name="Report_Expressions_Default_Permissions"
+                                Description="This code group grants default permissions for code in report expressions and Code element. ">
+                            <IMembershipCondition
+                                    class="StrongNameMembershipCondition"
+                                    version="1"
+
+
+--------------------------------------
+(c) 2012 Invensys Systems, Inc. All Rights Reserved. 
+

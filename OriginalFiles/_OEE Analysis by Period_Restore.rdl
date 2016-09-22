@@ -1,0 +1,1429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="aaReports">
+      <DataSourceReference>aaReports</DataSourceReference>
+      <rd:DataSourceID>54031b10-9cf2-49ae-ac87-71d98e577dc7</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <BottomMargin>0.9906cm</BottomMargin>
+  <RightMargin>0.9906cm</RightMargin>
+  <PageWidth>210mm</PageWidth>
+  <ReportParameters>
+    <ReportParameter Name="UserLanguage">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>=Code.CultureLanguageCode()</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>UserLanguage</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="StartDateTime">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=DateAdd(DateInterval.Day,-1,Now())</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>StartDateTime</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="EndDateTime">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=Now</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>End Datetime:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Duration">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>0</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Report_Parameter_50</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>LayoutDurationChoices</DataSetName>
+          <ValueField>TextId</ValueField>
+          <LabelField>LocalizedText</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="TimeZoneId">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>-1</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Time Zone Id:</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="MaxTextLength">
+      <DataType>Integer</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>44</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>MaxTextLength</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="LayoutIsGrayScale">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>false</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Use grayscale colors</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="SystemParameters">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>SystemParameters</DataSetName>
+          <ValueField>Value</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>SystemParameters</Prompt>
+      <MultiValue>true</MultiValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="LayoutLocalizedText">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>LayoutLocalizedText</DataSetName>
+          <ValueField>LocalizedText</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <MultiValue>true</MultiValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="LayoutColorCodes">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>LayoutColorCodes</DataSetName>
+          <ValueField>ColorCode</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <MultiValue>true</MultiValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="ShiftName">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ALL</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Shift Desc:</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="Entity">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ALL</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Entity Name:</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="ProductID">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ALL</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Item ID:</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="WOID">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ALL</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Work Order ID:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="TimeResolution">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Day</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Time Resolution:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="StartDateTimeUTC">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>TimeZone</DataSetName>
+          <ValueField>StartDateTimeUTC</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="EndDateTimeUTC">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>TimeZone</DataSetName>
+          <ValueField>EndDateTimeUTC</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+    </ReportParameter>
+    <ReportParameter Name="TimeZoneIdActual">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>TimeZone</DataSetName>
+          <ValueField>ActualTimeZoneId</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+    </ReportParameter>
+    <ReportParameter Name="TimeZoneDescription">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>TimeZone</DataSetName>
+          <ValueField>TimeZoneDesc</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+    </ReportParameter>
+    <ReportParameter Name="FilterStartTimeUTC">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>OEETimeFilter</DataSetName>
+          <ValueField>FilterStartTimeUTC</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+    </ReportParameter>
+    <ReportParameter Name="FilterEndTimeUTC">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>OEETimeFilter</DataSetName>
+          <ValueField>FilterEndTimeUTC</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>false</rd:DrawGrid>
+  <InteractiveWidth>210mm</InteractiveWidth>
+  <rd:GridSpacing>1mm</rd:GridSpacing>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <Body>
+    <ColumnSpacing>10mm</ColumnSpacing>
+    <ReportItems>
+      <Table Name="tblDetail">
+        <KeepTogether>true</KeepTogether>
+        <DataSetName>OEEAnalysisByPeriod</DataSetName>
+        <Details>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Scope">
+                      <rd:DefaultName>Scope</rd:DefaultName>
+                      <ZIndex>8</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Top>None</Top>
+                          <Left>None</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <Format>=IIF(Parameters!TimeResolution.Value = "Day","dd-MMM-yyyy","")</Format>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Default>=Parameters!LayoutColorCodes.Value(8)</Default>
+                          <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Iif( RowNumber(Nothing) Mod 2, Parameters!LayoutColorCodes.Value(0), Parameters!LayoutColorCodes.Value(1) )</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!PeriodStart.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextId">
+                      <rd:DefaultName>TextId</rd:DefaultName>
+                      <ZIndex>7</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Top>None</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Left>0.5pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <Format>#,###</Format>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Iif( RowNumber(Nothing) Mod 2, Parameters!LayoutColorCodes.Value(0), Parameters!LayoutColorCodes.Value(2) )</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!ShiftDesc.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox2">
+                      <rd:DefaultName>textbox2</rd:DefaultName>
+                      <ZIndex>6</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Top>None</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Left>0.5pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <Format>#,###</Format>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Iif( RowNumber(Nothing) Mod 2, Parameters!LayoutColorCodes.Value(0), Parameters!LayoutColorCodes.Value(4) )</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!EntityName.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox4">
+                      <rd:DefaultName>textbox4</rd:DefaultName>
+                      <ZIndex>5</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Top>None</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Left>0.5pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Iif( RowNumber(Nothing) Mod 2, Parameters!LayoutColorCodes.Value(0), Parameters!LayoutColorCodes.Value(5) )</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!PeriodLastTime.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox6">
+                      <rd:DefaultName>textbox6</rd:DefaultName>
+                      <ZIndex>4</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Top>None</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Left>0.5pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Iif( RowNumber(Nothing) Mod 2, Parameters!LayoutColorCodes.Value(0), Parameters!LayoutColorCodes.Value(1) )</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Code.CalculTime(Fields!ScheduledTime.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox9">
+                      <rd:DefaultName>textbox9</rd:DefaultName>
+                      <ZIndex>3</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Top>None</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Left>0.5pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Iif( RowNumber(Nothing) Mod 2, Parameters!LayoutColorCodes.Value(0), Parameters!LayoutColorCodes.Value(2) )</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Code.CalculTime(Fields!ProductionTime.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox11">
+                      <rd:DefaultName>textbox11</rd:DefaultName>
+                      <ZIndex>2</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Top>None</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Left>0.5pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <Format>F2</Format>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Iif( RowNumber(Nothing) Mod 2, Parameters!LayoutColorCodes.Value(0), Parameters!LayoutColorCodes.Value(3) )</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!GoodUnits.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox13">
+                      <rd:DefaultName>textbox13</rd:DefaultName>
+                      <ZIndex>1</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Top>None</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Left>0.5pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <Format>F2</Format>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Iif( RowNumber(Nothing) Mod 2, Parameters!LayoutColorCodes.Value(0), Parameters!LayoutColorCodes.Value(4) )</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!TotalUnits.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox15">
+                      <rd:DefaultName>textbox15</rd:DefaultName>
+                      <Style>
+                        <BorderStyle>
+                          <Top>None</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Left>0.5pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <Format>F2</Format>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Iif( RowNumber(Nothing) Mod 2, Parameters!LayoutColorCodes.Value(0), Parameters!LayoutColorCodes.Value(5) )</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!TheoreticalCount.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>6mm</Height>
+            </TableRow>
+          </TableRows>
+          <Sorting>
+            <SortBy>
+              <SortExpression>=Fields!EntityName.Value</SortExpression>
+              <Direction>Ascending</Direction>
+            </SortBy>
+            <SortBy>
+              <SortExpression>=Fields!PeriodLastTime.Value</SortExpression>
+              <Direction>Ascending</Direction>
+            </SortBy>
+          </Sorting>
+        </Details>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox5XX">
+                      <ToolTip>=Parameters!LayoutLocalizedText.Value(0)</ToolTip>
+                      <ZIndex>17</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>None</Top>
+                          <Left>None</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Top>2pt</Top>
+                          <Left>0.75pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>8pt</FontSize>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Top>=Parameters!LayoutColorCodes.Value(6)</Top>
+                          <Default>=Parameters!LayoutColorCodes.Value(8)</Default>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Parameters!LayoutColorCodes.Value(1)</BackgroundColor>
+                        <Color>=Parameters!LayoutColorCodes.Value(6)</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <Value>=IIF(Parameters!TimeResolution.Value="Day",
+Parameters!LayoutLocalizedText.Value(0),
+Parameters!LayoutLocalizedText.Value(2))</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox6XX">
+                      <ToolTip>=Parameters!LayoutLocalizedText.Value(1)</ToolTip>
+                      <ZIndex>16</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>None</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Top>2pt</Top>
+                          <Left>0.5pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>8pt</FontSize>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Default>=Parameters!LayoutColorCodes.Value(6)</Default>
+                          <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Parameters!LayoutColorCodes.Value(2)</BackgroundColor>
+                        <Color>=Parameters!LayoutColorCodes.Value(6)</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <Value>=Parameters!LayoutLocalizedText.Value(1)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox1">
+                      <ToolTip>=Parameters!LayoutLocalizedText.Value(3)</ToolTip>
+                      <rd:DefaultName>textbox1</rd:DefaultName>
+                      <ZIndex>15</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>None</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Top>2pt</Top>
+                          <Left>0.5pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>8pt</FontSize>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Default>=Parameters!LayoutColorCodes.Value(6)</Default>
+                          <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Parameters!LayoutColorCodes.Value(4)</BackgroundColor>
+                        <Color>=Parameters!LayoutColorCodes.Value(6)</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Parameters!LayoutLocalizedText.Value(3)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox3">
+                      <ToolTip>=Parameters!LayoutLocalizedText.Value(4)</ToolTip>
+                      <rd:DefaultName>textbox3</rd:DefaultName>
+                      <ZIndex>14</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>None</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Top>2pt</Top>
+                          <Left>0.5pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>8pt</FontSize>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Default>=Parameters!LayoutColorCodes.Value(6)</Default>
+                          <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Parameters!LayoutColorCodes.Value(5)</BackgroundColor>
+                        <Color>=Parameters!LayoutColorCodes.Value(6)</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Parameters!LayoutLocalizedText.Value(4)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox5">
+                      <ToolTip>=Parameters!LayoutLocalizedText.Value(5)</ToolTip>
+                      <rd:DefaultName>textbox5</rd:DefaultName>
+                      <ZIndex>13</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>None</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Top>2pt</Top>
+                          <Left>0.5pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>8pt</FontSize>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Default>=Parameters!LayoutColorCodes.Value(6)</Default>
+                          <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Parameters!LayoutColorCodes.Value(1)</BackgroundColor>
+                        <Color>=Parameters!LayoutColorCodes.Value(6)</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Parameters!LayoutLocalizedText.Value(5)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox7">
+                      <ToolTip>=Parameters!LayoutLocalizedText.Value(6)</ToolTip>
+                      <rd:DefaultName>textbox7</rd:DefaultName>
+                      <ZIndex>12</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>None</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Top>2pt</Top>
+                          <Left>0.5pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>8pt</FontSize>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Default>=Parameters!LayoutColorCodes.Value(6)</Default>
+                          <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Parameters!LayoutColorCodes.Value(2)</BackgroundColor>
+                        <Color>=Parameters!LayoutColorCodes.Value(6)</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Parameters!LayoutLocalizedText.Value(6)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox10">
+                      <ToolTip>=Parameters!LayoutLocalizedText.Value(7)</ToolTip>
+                      <rd:DefaultName>textbox10</rd:DefaultName>
+                      <ZIndex>11</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>None</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Top>2pt</Top>
+                          <Left>0.5pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>8pt</FontSize>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Default>=Parameters!LayoutColorCodes.Value(6)</Default>
+                          <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Parameters!LayoutColorCodes.Value(3)</BackgroundColor>
+                        <Color>=Parameters!LayoutColorCodes.Value(6)</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Parameters!LayoutLocalizedText.Value(7)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox12">
+                      <ToolTip>=Parameters!LayoutLocalizedText.Value(8)</ToolTip>
+                      <rd:DefaultName>textbox12</rd:DefaultName>
+                      <ZIndex>10</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>None</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Top>2pt</Top>
+                          <Left>0.5pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>8pt</FontSize>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Default>=Parameters!LayoutColorCodes.Value(6)</Default>
+                          <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Parameters!LayoutColorCodes.Value(4)</BackgroundColor>
+                        <Color>=Parameters!LayoutColorCodes.Value(6)</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Parameters!LayoutLocalizedText.Value(8)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox14">
+                      <ToolTip>=Parameters!LayoutLocalizedText.Value(9)</ToolTip>
+                      <rd:DefaultName>textbox14</rd:DefaultName>
+                      <ZIndex>9</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>None</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Top>2pt</Top>
+                          <Left>0.5pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>8pt</FontSize>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Default>=Parameters!LayoutColorCodes.Value(6)</Default>
+                          <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Parameters!LayoutColorCodes.Value(5)</BackgroundColor>
+                        <Color>=Parameters!LayoutColorCodes.Value(6)</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Parameters!LayoutLocalizedText.Value(9)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>6mm</Height>
+            </TableRow>
+          </TableRows>
+          <RepeatOnNewPage>true</RepeatOnNewPage>
+          <FixedHeader>true</FixedHeader>
+        </Header>
+        <TableColumns>
+          <TableColumn>
+            <Width>19mm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>25mm</Width>
+            <Visibility>
+              <Hidden>=IIF(Parameters!TimeResolution.Value="Day",True, False)</Hidden>
+            </Visibility>
+          </TableColumn>
+          <TableColumn>
+            <Width>27mm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>24mm</Width>
+            <Visibility>
+              <Hidden>=IIF(Parameters!TimeResolution.Value="Hour",True,False)</Hidden>
+            </Visibility>
+          </TableColumn>
+          <TableColumn>
+            <Width>19.26455mm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>19mm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21mm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>16mm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>20mm</Width>
+          </TableColumn>
+        </TableColumns>
+      </Table>
+    </ReportItems>
+    <Height>12mm</Height>
+  </Body>
+  <rd:ReportID>90c0bc17-d418-4544-8e04-9930f87651de</rd:ReportID>
+  <LeftMargin>0.9906cm</LeftMargin>
+  <EmbeddedImages>
+    <EmbeddedImage Name="aarfooterleft">
+      <ImageData>iVBORw0KGgoAAAANSUhEUgAAAggAAAAhCAIAAAAzosTjAAAACXBIWXMAAC4jAAAuIwF4pT92AAACk0lEQVR4nO3dQW7bMBBGYd06y5wjvkkXvUCuQLYLsj2ERErowpIixYnbIB3kn8EDPhQCI0vjBwOz7PD4+B0AgN3w8PANAIDdcLk8X56e13+ftuvPH14+cnh8wicP/2XUyycObwe4f/hfYlL4fuHjDXQ27SweWXw8P7+BYZyWsc3jtIzTMrbtui3vnM9jm8dpHtsyTtv1vfPl5WL90/Lu+fqE7YHT/Lfz5XBxeOB0fOB1tv27zIdXH6bdr6f5fL6sBd784O31q1e/fF8KWxY+VqKzbWftyOLj+fkNDLn0VFoqLdWeSsul5dJTbam0VHoqLdd2vSeXnmpPteXar/fk2tdP1Z6vf3p1T2m59rR9PNftOWW9+XRP3e6pNyfnV+TzK9I24faott328ZN6OLlelJ73V9x8PN3Mv3/9VHs+Dklhs8L7c+hs3Vk/svh4Xn4Dw9oRAIDSUmksBgDACYsBAHAy/Pg9f/kQsVGYzmGIRxYfz5Hh5y9S2qIwncMQjyw+niMsBnMUpnMY4pHFx3OExWCOwnQOQzyy+HiOsBjMUZjOYYhHFh/PERaDOQrTOQzxyOLjOcJiMEdhOochHll8PEdYDOYoTOcwxCOLj+cIi8Echekchnhk8fEcYTGYozCdwxCPLD6eIywGcxSmcxjikcXHc4TFYI7CdA5DPLL4eI6wGMxRmM5hiEcWH88RFoM5CtM5DPHI4uM5wmIwR2E6hyEeWXw8R1gM5ihM5zDEI4uP5wiLwRyF6RyGeGTx8RxhMZijMJ3DEI8sPp4jLAZzFKZzGOKRxcdzhMVgjsJ0DkM8svh4jvB/PpujMJ3DEI8sPp4jQ/7qCcKjMJ3DEI8sPp4jw5dPAACQwmIAAJywGAAAJ38AXJcai3BV7VkAAAAadEVYdEF1dGhvcgBVbGVhZCBTeXN0
+ZW1zLCBJbmMuyR0+dgAAAABJRU5ErkJggg==</ImageData>
+      <MIMEType>image/png</MIMEType>
+    </EmbeddedImage>
+    <EmbeddedImage Name="aarheaderright">
+      <ImageData>iVBORw0KGgoAAAANSUhEUgAAAAgAAAAZCAYAAAAMhW+1AAAACXBIWXMAAAsSAAALEgHS3X78AAAB3UlEQVR4nH3Iz2vSARjH8eff6NBlF4OF1kUvems3vTkM9t3BOUOQUZuhUhrpDksWxfoBUyj4zkibpOXmISWau+ikjSCaBEs2iqCZ7VAs5+Xd4evUix1efN7PI8d/YZhOB6TZatNsndBstTn82eaw1da6dcLvPx1kr3HE3n5XY9AvfjSPkdrONzRfu/r3/sERUijVKZR2KZTqFIq7A13nY/07oqZqqKktTbqGmt5CTdVQ0zUqtQZy92GJYYrv6kgwkiMQyRGM5AhEswTnswS798v1HcQ9m+TKtSTu2a6r/U6+qCCO6TiXXcs4XAkcrri209om1E3kjG6OYfzhDHJ21E/P+YEe9RO4nUVGLoTQ3KTfIUYuhrgx/wrRGSPoTBF0pig6U4Rzpiinv1sL64jBHENviaG33EFviWGwxDCYtY0uvkGMl5Ywji3R24FeuPcWMdviWGwJLLZltO7v4qNNZMy+wjD34xXEqmSwTa5iUzJYlQzWye4qGR4/fY+Mu/LYp9ewu/Jda4y78tjdeeIrH5AJbxFlpojiLaF4tZ3wFlG8RZ6kPiFTvjJT1zdwzm3g9JVx+sqc/tTVz4gnWMUTqOAJDqriCVR5lv2CzIS36QkNdHib568PkAdqi//5B/uDF1tO2wIhAAAAAElFTkSuQmCC</ImageData>
+      <MIMEType>image/png</MIMEType>
+    </EmbeddedImage>
+    <EmbeddedImage Name="aarheaderleft">
+      <ImageData>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</ImageData>
+      <MIMEType>image/png</MIMEType>
+    </EmbeddedImage>
+    <EmbeddedImage Name="aarfooterright">
+      <ImageData>iVBORw0KGgoAAAANSUhEUgAAAHoAAAAhCAIAAACZciiHAAAACXBIWXMAAC4jAAAuIwF4pT92AAABhUlEQVR4nO2awUrEMBCG89Z79CEUYXtZfQM9qnheFUGQBZGZ9ZBZ7yIipJMED01qunVXl8UU0oGfMvydzPz5rq06OLgWZZOaTC5E2aSq6i5oGp/TWO9vVruY6YQ9zb9ErfYw+wG2m7FWhr1hb2pv2Jm6KWK90XeGnamdYW/qWG/z/XcRXvmNfpgQB9buN98nRTKwTgc22dq7uGR1krata9f1fSDw48F+vbY6ya+QLBKjtqAZNANZ0IyaUVsgBs2gLWhue1BbIAvESLbpQbLhFFlsXq31aEayEI8jxTk6NHd6KPZQz+muwO4KSG7RNMe23R1KnKbQFtsVvePQy99eHxq8cY4KlEVZpJDscmX/e40o4F7A58PT++A5RiJ1frU8Pr1dvrrBo4xB6uwSD2fzl5XgzoX76ORGcAvuAiW4BXe5EtyCu1wJbsFdrgS34C5XgltwlyvBLbjLleAW3OVKcA+AW77m5MQ9m8u3yky4H58/7hdvOHSOkUj+M8mLe/AEo5LgzqovxlVz2OzeyGQAAAAadEVYdEF1dGhvcgBVbGVhZCBTeXN0ZW1zLCBJbmMuyR0+dgAAAABJRU5ErkJggg==</ImageData>
+      <MIMEType>image/png</MIMEType>
+    </EmbeddedImage>
+    <EmbeddedImage Name="aarfooterlogo">
+      <ImageData>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</ImageData>
+      <MIMEType>image/png</MIMEType>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <DataSets>
+    <DataSet Name="LayoutColorCodes">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>SELECT ColorCode
+FROM aarsLayoutColorCodes
+ORDER BY ColorId</CommandText>
+        <DataSourceName>aaReports</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="ColorCode">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ColorCode</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="LayoutDurationChoices">
+      <Query>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>aarsGetLayoutLocalizedText</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@Scope">
+            <Value>="aaTimeRangeEnum"</Value>
+          </QueryParameter>
+          <QueryParameter Name="@LanguageCode">
+            <Value>=Parameters!UserLanguage.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>aaReports</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="TextId">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>TextId</DataField>
+        </Field>
+        <Field Name="LocalizedText">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>LocalizedText</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="LayoutLocalizedText">
+      <Query>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>aarsGetLayoutLocalizedText</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@Scope">
+            <Value>FACT._OEE Analysis by Period Report</Value>
+          </QueryParameter>
+          <QueryParameter Name="@LanguageCode">
+            <Value>=Parameters!UserLanguage.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>aaReports</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="TextId">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>TextId</DataField>
+        </Field>
+        <Field Name="LocalizedText">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>LocalizedText</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="SystemParameters">
+      <Query>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>aarsGetSystemParameters</CommandText>
+        <DataSourceName>aaReports</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="Value">
+          <rd:TypeName>System.Object</rd:TypeName>
+          <DataField>Value</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="OEEAnalysisByPeriod">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>rpt_FACT_OEE_Analysis_By_Period</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@StartDateTimeUTC">
+            <Value>=Parameters!FilterStartTimeUTC.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EndDateTimeUTC">
+            <Value>=Parameters!FilterEndTimeUTC.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@TimeZoneId">
+            <Value>=Parameters!TimeZoneIdActual.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ShiftDesc">
+            <Value>=Code.WhereCondition(Parameters!ShiftName.Value)</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EntityName">
+            <Value>=Code.WhereCondition(Parameters!Entity.Value)</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ProductID">
+            <Value>=Code.WhereCondition(Parameters!ProductID.Value)</Value>
+          </QueryParameter>
+          <QueryParameter Name="@WOID">
+            <Value>=IIF(Parameters!WOID.Value="ALL","ALL","N'" &amp; Code.SubstituteSingleQuote(Parameters!WOID.Value) &amp; "'")</Value>
+          </QueryParameter>
+          <QueryParameter Name="@TimeResolution">
+            <Value>=Parameters!TimeResolution.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ExecuteAgainstRestoreDB">
+            <Value>=1</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>aaReports</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="PeriodStart">
+          <DataField>PeriodStart</DataField>
+        </Field>
+        <Field Name="ShiftDesc">
+          <DataField>ShiftDesc</DataField>
+        </Field>
+        <Field Name="EntityName">
+          <DataField>EntityName</DataField>
+        </Field>
+        <Field Name="PeriodLastTime">
+          <DataField>PeriodLastTime</DataField>
+        </Field>
+        <Field Name="ScheduledTime">
+          <DataField>ScheduledTime</DataField>
+        </Field>
+        <Field Name="ProductionTime">
+          <DataField>ProductionTime</DataField>
+        </Field>
+        <Field Name="GoodUnits">
+          <DataField>GoodUnits</DataField>
+        </Field>
+        <Field Name="TotalUnits">
+          <DataField>TotalUnits</DataField>
+        </Field>
+        <Field Name="TheoreticalCount">
+          <DataField>TheoreticalCount</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="TimeZone">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>aarsGetTimePeriodInfo</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@StartDateTime">
+            <Value>=Parameters!StartDateTime.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EndDateTime">
+            <Value>=Parameters!EndDateTime.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@TimeZoneId">
+            <Value>=Parameters!TimeZoneId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Duration">
+            <Value>=Parameters!Duration.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>aaReports</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="ActualTimeZoneId">
+          <DataField>TimeZoneId</DataField>
+        </Field>
+        <Field Name="TimeZoneDesc">
+          <DataField>TimeZone</DataField>
+        </Field>
+        <Field Name="StartDateTimeUTC">
+          <DataField>StartDateTimeUTC</DataField>
+        </Field>
+        <Field Name="EndDateTimeUTC">
+          <DataField>EndDateTimeUTC</DataField>
+        </Field>
+        <Field Name="StartTimeLocal">
+          <DataField>StartDateTimeLocal</DataField>
+        </Field>
+        <Field Name="EndTimeLocal">
+          <DataField>EndDateTimeLocal</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="OEETimeFilter">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>rpt_FACT_OEE_GetTimeFilter</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@StartDateTimeUTC">
+            <Value>=Parameters!StartDateTimeUTC.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EndDateTimeUTC">
+            <Value>=Parameters!EndDateTimeUTC.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@TimeZoneId">
+            <Value>=Parameters!TimeZoneIdActual.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ShiftDesc">
+            <Value>=Code.WhereCondition(Parameters!ShiftName.Value)</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EntityName">
+            <Value>=Code.WhereCondition(Parameters!Entity.Value)</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ProductID">
+            <Value>=Code.WhereCondition(Parameters!ProductID.Value)</Value>
+          </QueryParameter>
+          <QueryParameter Name="@WOID">
+            <Value>=IIF(Parameters!WOID.Value="ALL","ALL","N'" &amp; Code.SubstituteSingleQuote(Parameters!WOID.Value) &amp; "'")</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ExecuteAgainstRestoreDB">
+            <Value>=1</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>aaReports</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="FilterStartTimeUTC">
+          <DataField>FilterStartTimeUTC</DataField>
+        </Field>
+        <Field Name="FilterEndTimeUTC">
+          <DataField>FilterEndTimeUTC</DataField>
+        </Field>
+        <Field Name="FilterStartTimeDisplay">
+          <DataField>FilterStartTimeDisplay</DataField>
+        </Field>
+        <Field Name="FilterEndTimeDisplay">
+          <DataField>FilterEndTimeDisplay</DataField>
+        </Field>
+        <Field Name="ClosestLowRangeUTC">
+          <DataField>ClosestLowRangeUTC</DataField>
+        </Field>
+        <Field Name="ClosestHighRangeUTC">
+          <DataField>ClosestHighRangeUTC</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Author>Invensys Systems, Inc.</Author>
+  <Code>Function CultureLanguageCode As String
+   Dim oCulture As System.Globalization.CultureInfo
+   CultureLanguageCode =   LCase(oCulture.CurrentUICulture.Name)
+End Function
+
+Function ClipString(ByVal aString As String, ByVal Max As Integer) As String
+    aString = Trim(aString)
+    If Len(aString) &gt; Max And Max &gt; 0 Then
+        ClipString = Left(aString, Max - 1) &amp; "…"
+    Else
+        ClipString = aString
+    End If
+End Function
+
+Function SectionHidden(ByVal SectionList As Parameter, ByVal SectionName As String) As Boolean
+
+    Dim Position As Integer = 0
+    Dim IsVisible As Boolean = False
+
+    Do
+        If SectionList.Value(Position) = "ALL" Or SectionList.Value(Position) = SectionName Then
+            IsVisible = True
+        End If
+        Position = Position + 1
+    Loop While Position &lt; SectionList.Value.Length And Not (IsVisible)
+
+    SectionHidden = Not (IsVisible)
+End Function
+
+Function ChartColor(ByVal AllParameters As Parameters, ByVal Index As Integer) As String
+     Dim BaseColor As Integer = 18
+     Dim BaseGray As Integer = 30
+     Dim IsGray As Boolean = AllParameters("LayoutIsGrayScale").Value
+
+     If IsGray Then
+        ChartColor = AllParameters("LayoutColorCodes").Value( BaseGray + Index )
+    Else
+        ChartColor = AllParameters("LayoutColorCodes").Value( BaseColor + Index )
+    End If
+End Function
+
+Function FormatValue(ByVal PV As Object, ByVal Precision As Integer) As String
+    If IsNumeric(PV) Then
+        Dim Places As Integer = 5 - CInt(System.Math.Log10(System.Math.Abs(CDbl(PV)))) + Precision
+        If Places &lt; 0 Then
+	Places = 1
+        End If
+        FormatValue = FormatNumber(CDbl(PV), Places )
+    Else
+        FormatValue = ClipString(PV,14)
+    End If
+End Function
+
+Public Function CalculTime(ByVal SecondTime As Integer) As String
+        Dim s As Integer
+        Dim m As Integer
+        Dim h As Integer
+        Dim d As Integer
+        Dim tmp As Integer
+        Dim ret As String
+
+        tmp = SecondTime
+        d = Int(tmp / 24 / 60 / 60)
+
+        tmp = tmp - d * 24 * 60 * 60
+        h = Int(tmp / 60 / 60)
+
+        tmp = tmp - h * 60 * 60
+        m = Int(tmp / 60)
+
+        tmp = tmp - m * 60
+        s = tmp
+
+       h = h + 24 * d
+        If h &lt; 10 Then
+            ret = ret + Mid(CStr(h + 100), 2) + ":"
+        Else
+            ret = CStr(h) + ":"
+        End If
+        ret = ret + Mid(CStr(m + 100), 2) + ":"
+        ret = ret + Mid(CStr(s + 100), 2)
+        CalculTime = ret
+End Function
+
+Function CalculTimeOld(SecondTime As integer) As String
+   Dim s as Integer
+   Dim m as Integer
+   Dim h as Integer
+   Dim d as Integer
+   Dim tmp as Integer
+   Dim ret as String
+
+   tmp = SecondTime
+   d = Int(tmp/24/60/60)
+
+   tmp = tmp - d*24*60*60
+   h = Int(tmp/60/60)
+
+   tmp = tmp - h*60*60
+   m = Int(tmp/60)
+
+   tmp = tmp - m*60
+   s = tmp
+
+   If d&gt;0 Then ret = Cstr(d) + "d "
+   If d&gt;0 Or h&gt;0 Then ret = ret + right(Cstr(h+100),2) + ":"
+   ret = ret + right(Cstr(m+100),2) + ":"
+   ret = ret + right(Cstr(s+100),2)
+   CalculTimeOld = ret
+End Function
+
+Public Function WhereCondition(ByVal PASelectedValues As Object()) As String
+
+
+        Dim res As String
+        res = ""
+
+        If (PASelectedValues(0) &lt;&gt; "ALL") Then
+            res = String.Format("({0})", SplitStr(PASelectedValues))
+        Else
+            res = ""
+        End If
+        WhereCondition = res
+    End Function
+
+    Public Function SubstituteSingleQuote(ByVal strText As String) As String
+        Dim result As String
+        result = ""
+
+        If (IsNothing(strText) Or Len(strText) = 0) Then
+            SubstituteSingleQuote = ""
+        Else
+            Dim lCount As Integer
+            lCount = Len(strText)
+            Dim i As Integer
+            Dim thisChar As String
+            For i = 1 To lCount
+                thisChar = Mid(strText, i, 1)
+                If (thisChar = "'") Then
+                    result = result + "'"
+                End If
+                result = result + thisChar
+            Next
+            SubstituteSingleQuote = result
+        End If
+    End Function
+
+    Public Function SplitStr(ByVal ds As Object()) As String
+        Dim i As Integer
+        Dim res As String
+        res = ""
+        i = 0
+        For i = 0 To (ds.Length - 1)
+            If i &gt; 0 Then
+                res = res &amp; ", "
+            End If
+            If (ds(i) &lt;&gt; "") Then
+                res = res &amp; "N'" &amp; SubstituteSingleQuote(CStr(ds(i))) &amp; "'"
+            Else
+                res = res &amp; "N''"
+            End If
+        Next i
+        If (res.Length = 0) Then
+            res = "null"
+        End If
+        SplitStr = res
+    End Function
+</Code>
+  <Width>19.02646cm</Width>
+  <InteractiveHeight>260mm</InteractiveHeight>
+  <Description>OEE Analysis</Description>
+  <Language>=User!Language</Language>
+  <DataElementName>ArchestrA</DataElementName>
+  <TopMargin>0.9906cm</TopMargin>
+  <PageHeight>297mm</PageHeight>
+</Report>

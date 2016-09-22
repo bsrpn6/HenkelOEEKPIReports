@@ -1,0 +1,562 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="aaReports">
+      <rd:DataSourceID>e40b88cd-e621-4b20-8b32-581267eae645</rd:DataSourceID>
+      <DataSourceReference>aaReports</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <rd:ReportID>ae40b1d8-2142-4dec-824f-c27c6c960013</rd:ReportID>
+  <Width>10in</Width>
+  <Body>
+    <Height>0.63in</Height>
+    <ColumnSpacing>0.5in</ColumnSpacing>
+    <ReportItems>
+      <Textbox Name="textbox1">
+        <rd:DefaultName>textbox1</rd:DefaultName>
+        <Value>Line State Data</Value>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.21in</Height>
+      </Textbox>
+      <Table Name="table1">
+        <Top>0.21in</Top>
+        <Header>
+          <RepeatOnNewPage>true</RepeatOnNewPage>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox2">
+                      <rd:DefaultName>textbox2</rd:DefaultName>
+                      <Value>ent id</Value>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Height>0.21in</Height>
+                      <Width>1in</Width>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox3">
+                      <rd:DefaultName>textbox3</rd:DefaultName>
+                      <Value>ent name</Value>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Height>0.21in</Height>
+                      <Width>1in</Width>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox4">
+                      <rd:DefaultName>textbox4</rd:DefaultName>
+                      <Value>Group N</Value>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Height>0.21in</Height>
+                      <Width>1in</Width>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox5">
+                      <rd:DefaultName>textbox5</rd:DefaultName>
+                      <Value>Total Time</Value>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Height>0.21in</Height>
+                      <Width>1in</Width>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox6">
+                      <rd:DefaultName>textbox6</rd:DefaultName>
+                      <Value>Producing</Value>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Height>0.21in</Height>
+                      <Width>1in</Width>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox7">
+                      <rd:DefaultName>textbox7</rd:DefaultName>
+                      <Value>Plan Down</Value>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Height>0.21in</Height>
+                      <Width>1in</Width>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox8">
+                      <rd:DefaultName>textbox8</rd:DefaultName>
+                      <Value>Non Sched</Value>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Height>0.21in</Height>
+                      <Width>1in</Width>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox9">
+                      <rd:DefaultName>textbox9</rd:DefaultName>
+                      <Value>Blocked</Value>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Height>0.21in</Height>
+                      <Width>1in</Width>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox10">
+                      <rd:DefaultName>textbox10</rd:DefaultName>
+                      <Value>Starved</Value>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Height>0.21in</Height>
+                      <Width>1in</Width>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox11">
+                      <rd:DefaultName>textbox11</rd:DefaultName>
+                      <Value>Failed</Value>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Height>0.21in</Height>
+                      <Width>1in</Width>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.21in</Height>
+            </TableRow>
+          </TableRows>
+        </Header>
+        <Details>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="ent_id">
+                      <rd:DefaultName>ent_id</rd:DefaultName>
+                      <Value>=Fields!ent_id.Value</Value>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Height>0.21in</Height>
+                      <Width>1in</Width>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="ent_name">
+                      <rd:DefaultName>ent_name</rd:DefaultName>
+                      <Value>=Fields!ent_name.Value</Value>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Height>0.21in</Height>
+                      <Width>1in</Width>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="GroupN">
+                      <rd:DefaultName>GroupN</rd:DefaultName>
+                      <Value>=Fields!GroupN.Value</Value>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Height>0.21in</Height>
+                      <Width>1in</Width>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TotalTime">
+                      <rd:DefaultName>TotalTime</rd:DefaultName>
+                      <Value>=Fields!TotalTime.Value</Value>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Height>0.21in</Height>
+                      <Width>1in</Width>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Producing">
+                      <rd:DefaultName>Producing</rd:DefaultName>
+                      <Value>=Fields!Producing.Value</Value>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Height>0.21in</Height>
+                      <Width>1in</Width>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="PlanDown">
+                      <rd:DefaultName>PlanDown</rd:DefaultName>
+                      <Value>=Fields!PlanDown.Value</Value>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Height>0.21in</Height>
+                      <Width>1in</Width>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="NonSched">
+                      <rd:DefaultName>NonSched</rd:DefaultName>
+                      <Value>=Fields!NonSched.Value</Value>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Height>0.21in</Height>
+                      <Width>1in</Width>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Blocked">
+                      <rd:DefaultName>Blocked</rd:DefaultName>
+                      <Value>=Fields!Blocked.Value</Value>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Height>0.21in</Height>
+                      <Width>1in</Width>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Starved">
+                      <rd:DefaultName>Starved</rd:DefaultName>
+                      <Value>=Fields!Starved.Value</Value>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Height>0.21in</Height>
+                      <Width>1in</Width>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Failed">
+                      <rd:DefaultName>Failed</rd:DefaultName>
+                      <Value>=Fields!Failed.Value</Value>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Height>0.21in</Height>
+                      <Width>1in</Width>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.21in</Height>
+            </TableRow>
+          </TableRows>
+        </Details>
+        <TableColumns>
+          <TableColumn>
+            <Width>1in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1in</Width>
+          </TableColumn>
+        </TableColumns>
+        <DataSetName>DataSet1</DataSetName>
+      </Table>
+    </ReportItems>
+  </Body>
+  <Language>en-US</Language>
+  <LeftMargin>1in</LeftMargin>
+  <RightMargin>1in</RightMargin>
+  <TopMargin>1in</TopMargin>
+  <BottomMargin>1in</BottomMargin>
+  <PageWidth>8.5in</PageWidth>
+  <PageHeight>11in</PageHeight>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Fields>
+        <Field Name="ent_id">
+          <DataField>ent_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ent_name">
+          <DataField>ent_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GroupN">
+          <DataField>GroupN</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TotalTime">
+          <DataField>TotalTime</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Producing">
+          <DataField>Producing</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="PlanDown">
+          <DataField>PlanDown</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="NonSched">
+          <DataField>NonSched</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Blocked">
+          <DataField>Blocked</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Starved">
+          <DataField>Starved</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Failed">
+          <DataField>Failed</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>aaReports</DataSourceName>
+        <CommandType>Text</CommandType>
+        <CommandText>DECLARE
+		@StartShiftLocal datetime,
+		@EndShiftLocal datetime,
+		@Ent_ID int,
+		@GroupByOpt int
+
+SELECT @GroupByOpt = 0, @Ent_ID = 0, @StartShiftLocal = '2015-06-01 00:00:00.000', @EndShiftLocal = '2015-06-30 23:59:00.000'
+
+
+
+SELECT ent.ent_name, ent.ent_id, tpm.shift_start_local, tpm.hour_start_local, sh.shift_desc,
+	SUM(tpm.runtime) AS runtime,
+	SUM(tpm.downtime) AS downtime,
+	SUM(tpm.idletime) AS idletime,
+	SUM(tpm.runtime + tpm.downtime) AS availtime,
+	SUM((tpm.runtime + tpm.downtime) / tpm.std_prod_rate / 3600) AS tmax_avail,
+	SUM(tpm.runtime / tpm.std_prod_rate / 3600) AS tmax_run,
+	SUM(tpm.qty_good) AS qty_good,
+	SUM(tpm.qty_reject) AS qty_reject,
+	SUM(tpm.qty_good + tpm.qty_reject) AS qty_total
+	INTO #tpm_temp
+	FROM MESDB.dbo.tpm_stat tpm WITH (NOLOCK)
+	INNER JOIN (SELECT * FROM dbo.MES_BSC_PerformanceRpt_Entities(@Ent_ID)) ent ON tpm.ent_id = ent.ent_id
+	INNER JOIN MESDB.dbo.shift sh ON tpm.shift_id = sh.shift_id
+	WHERE tpm.shift_start_local &gt;= @StartShiftLocal AND tpm.shift_start_local &lt;= @EndShiftLocal
+	GROUP BY ent.ent_name, ent.ent_id, tpm.shift_start_local, tpm.hour_start_local, sh.shift_desc
+
+
+/* Flexible  Grid */
+SELECT utl.ent_id, utl.ent_name,
+	CASE @GroupByOpt
+		WHEN 1 THEN LEFT(CONVERT(varchar(20), utl.hour_start_local, 108), 2) 
+--		WHEN 2 THEN sh.shift_desc
+		WHEN 3 THEN CONVERT(varchar(20), utl.shift_start_local, 101)
+		ELSE 'ALL'
+		END AS GroupN,
+	SUM(utl.duration) AS TotalTime,
+	SUM(CASE utl.state_cd WHEN 1 THEN utl.duration ELSE 0 END) AS Producing,
+	SUM(CASE utl.state_cd WHEN 2 THEN utl.duration ELSE 0 END) AS PlanDown,
+	SUM(CASE utl.state_cd WHEN 3 THEN utl.duration ELSE 0 END) AS NonSched,
+	SUM(CASE utl.state_cd WHEN 4 THEN utl.duration ELSE 0 END) AS Blocked,
+	SUM(CASE utl.state_cd WHEN 5 THEN utl.duration ELSE 0 END) AS Starved,
+	SUM(CASE WHEN utl.state_cd NOT BETWEEN 1 AND 5 THEN utl.duration ELSE 0 END) AS Failed
+	FROM
+	(SELECT tpm.ent_id, tpm.ent_name, tpm.shift_start_local, tpm.hour_start_local, evt.state_cd,
+		SUM(CASE
+			WHEN evt.EventStart &gt;= tpm.hour_start_local AND evt.EventEnd &lt;= DATEADD(hh, 1, tpm.hour_start_local) THEN evt.duration  -- Event Within Hour
+			WHEN evt.EventStart &lt; tpm.hour_start_local AND evt.EventEnd &gt; DATEADD(hh, 1, tpm.hour_start_local) THEN 3600  -- Event Spans Full Hour
+			WHEN evt.EventEnd &gt;= tpm.hour_start_local AND tpm.hour_start_local &gt; evt.EventStart THEN DATEDIFF(ss, tpm.hour_start_local, evt.EventEnd)   -- Overlaps End
+			WHEN evt.EventStart &gt;= tpm.hour_start_local AND evt.EventEnd &gt; DATEADD(hh, 1, tpm.hour_start_local) THEN 3600 - DATEDIFF(ss, tpm.hour_start_local, evt.EventStart)   -- Overlaps Start
+			ELSE 0 END) AS duration
+	FROM #tpm_temp tpm
+	INNER JOIN 	
+		(SELECT ut.ent_id, ut.shift_start_local, ut.state_cd, ut.event_time_local AS EventStart, DATEADD(ss, ut.duration, ut.event_time_local) AS EventEnd, ut.duration
+			FROM MESDB.dbo.util_log ut WITH (NOLOCK)
+			INNER JOIN (SELECT * FROM dbo.MES_BSC_PerformanceRpt_Entities(@Ent_ID)) tmp ON ut.ent_id = tmp.ent_id
+			WHERE ut.shift_start_local &gt;= @StartShiftLocal AND ut.shift_start_local &lt;= @EndShiftLocal
+			) evt
+		ON tpm.ent_id = evt.ent_id AND tpm.shift_start_local = evt.shift_start_local
+		AND (tpm.hour_start_local BETWEEN DATEADD(hh, -1, evt.EventStart) AND evt.EventEnd)
+		GROUP BY  tpm.ent_id, tpm.ent_name, tpm.shift_start_local, tpm.hour_start_local, evt.state_cd) utl
+	GROUP BY  utl.ent_id, utl.ent_name,
+	CASE @GroupByOpt
+		WHEN 1 THEN LEFT(CONVERT(varchar(20), utl.hour_start_local, 108), 2) 
+--		WHEN 2 THEN sh.shift_desc
+		WHEN 3 THEN CONVERT(varchar(20), utl.shift_start_local, 101)
+		ELSE 'ALL'
+		END
+
+
+DROP TABLE #tpm_temp</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <Timeout>0</Timeout>
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

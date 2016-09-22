@@ -1,0 +1,1157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="aaReports">
+      <DataSourceReference>aaReports</DataSourceReference>
+      <rd:DataSourceID>54031b10-9cf2-49ae-ac87-71d98e577dc7</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <BottomMargin>0.9906cm</BottomMargin>
+  <RightMargin>0.9906cm</RightMargin>
+  <PageWidth>210mm</PageWidth>
+  <ReportParameters>
+    <ReportParameter Name="UserLanguage">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>=Code.CultureLanguageCode()</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>UserLanguage</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="StartDateTime">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=DateAdd(DateInterval.Day,-1,Now())</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Start Time:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="EndDateTime">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=Now</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>End Time:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Duration">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>0</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Report_Parameter_50</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>LayoutDurationChoices</DataSetName>
+          <ValueField>TextId</ValueField>
+          <LabelField>LocalizedText</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="TimeZoneId">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>-1</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Time Zone Id:</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="MaxTextLength">
+      <DataType>Integer</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>44</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>MaxTextLength</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="LayoutIsGrayScale">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>false</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Use grayscale colors</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="SystemParameters">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>SystemParameters</DataSetName>
+          <ValueField>Value</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>SystemParameters</Prompt>
+      <MultiValue>true</MultiValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="LayoutLocalizedText">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>LayoutLocalizedText</DataSetName>
+          <ValueField>LocalizedText</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <MultiValue>true</MultiValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="LayoutLocalizedTemplateText">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>LayoutLocalizedTemplateText</DataSetName>
+          <ValueField>LocalizedText</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <MultiValue>true</MultiValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="LayoutColorCodes">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>LayoutColorCodes</DataSetName>
+          <ValueField>ColorCode</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <MultiValue>true</MultiValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="ReasonGroup">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ALL</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Reason Group:</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="Reason">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ALL</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Reason:</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="UtilState">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ALL</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Utilization State:</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="ShiftName">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ALL</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Shift Desc:</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="Entity">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ALL</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Entity Name:</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="Losstype">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ALL</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Loss Type</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Losstype</DataSetName>
+          <ValueField>LossType</ValueField>
+          <LabelField>LocalizedText</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="ProductID">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ALL</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Product ID:</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="WOID">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ALL</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Work Order ID:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="UserID">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ALL</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>User ID:</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="Category1">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ALL</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Category 1:</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="Category2">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ALL</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Category 2:</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="Category3">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ALL</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Category 3:</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="Category4">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ALL</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Category 4:</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="MinEventDuration">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>30</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Minimum Event Duration (sec.): </Prompt>
+    </ReportParameter>
+    <ReportParameter Name="StartDateTimeUTC">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>TimeZone</DataSetName>
+          <ValueField>StartDateTimeUTC</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="EndDateTimeUTC">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>TimeZone</DataSetName>
+          <ValueField>EndDateTimeUTC</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+    </ReportParameter>
+    <ReportParameter Name="TimeZoneIdActual">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>TimeZone</DataSetName>
+          <ValueField>ActualTimeZoneId</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+    </ReportParameter>
+    <ReportParameter Name="TimeZoneDescription">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>TimeZone</DataSetName>
+          <ValueField>TimeZoneDesc</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>false</rd:DrawGrid>
+  <InteractiveWidth>210mm</InteractiveWidth>
+  <rd:GridSpacing>1mm</rd:GridSpacing>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <Body>
+    <ColumnSpacing>10mm</ColumnSpacing>
+    <ReportItems>
+      <Table Name="table1">
+        <KeepTogether>true</KeepTogether>
+        <DataSetName>EventCount</DataSetName>
+        <Details>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Scope">
+                      <rd:DefaultName>Scope</rd:DefaultName>
+                      <ZIndex>2</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Top>None</Top>
+                          <Left>None</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Default>=Parameters!LayoutColorCodes.Value(8)</Default>
+                          <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Iif( RowNumber(Nothing) Mod 2, Parameters!LayoutColorCodes.Value(0), Parameters!LayoutColorCodes.Value(1) )</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <Value>=Fields!ReasonDesc.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextId">
+                      <rd:DefaultName>TextId</rd:DefaultName>
+                      <ZIndex>1</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Top>None</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Left>0.5pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <Format>#,###</Format>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Iif( RowNumber(Nothing) Mod 2, Parameters!LayoutColorCodes.Value(0), Parameters!LayoutColorCodes.Value(2) )</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <Value>=Fields!CountEvent.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="LanguageCode">
+                      <rd:DefaultName>LanguageCode</rd:DefaultName>
+                      <Style>
+                        <BorderStyle>
+                          <Top>None</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Left>0.5pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <Format>p2</Format>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Iif( RowNumber(Nothing) Mod 2, Parameters!LayoutColorCodes.Value(0), Parameters!LayoutColorCodes.Value(3) )</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <Value>=Fields!CountEventPercent.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>6mm</Height>
+            </TableRow>
+          </TableRows>
+        </Details>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox5XX">
+                      <ToolTip>=Parameters!LayoutLocalizedText.Value(0)</ToolTip>
+                      <ZIndex>5</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>None</Top>
+                          <Left>None</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Top>2pt</Top>
+                          <Left>0.75pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>8pt</FontSize>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Top>=Parameters!LayoutColorCodes.Value(6)</Top>
+                          <Default>=Parameters!LayoutColorCodes.Value(8)</Default>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Parameters!LayoutColorCodes.Value(1)</BackgroundColor>
+                        <Color>=Parameters!LayoutColorCodes.Value(6)</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <Value>=Parameters!LayoutLocalizedText.Value(0)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox6XX">
+                      <ToolTip>=Parameters!LayoutLocalizedText.Value(1)</ToolTip>
+                      <ZIndex>4</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>None</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Top>2pt</Top>
+                          <Left>0.5pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>8pt</FontSize>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Default>=Parameters!LayoutColorCodes.Value(6)</Default>
+                          <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Parameters!LayoutColorCodes.Value(2)</BackgroundColor>
+                        <Color>=Parameters!LayoutColorCodes.Value(6)</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <Value>=Parameters!LayoutLocalizedText.Value(1)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox8">
+                      <ToolTip>=Parameters!LayoutLocalizedText.Value(2)</ToolTip>
+                      <rd:DefaultName>textbox8</rd:DefaultName>
+                      <ZIndex>3</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>None</Top>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Top>2pt</Top>
+                          <Left>0.5pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontWeight>700</FontWeight>
+                        <FontSize>8pt</FontSize>
+                        <BorderColor>
+                          <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                          <Default>=Parameters!LayoutColorCodes.Value(6)</Default>
+                          <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                          <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                        </BorderColor>
+                        <BackgroundColor>=Parameters!LayoutColorCodes.Value(3)</BackgroundColor>
+                        <Color>=Parameters!LayoutColorCodes.Value(6)</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <Value>=Parameters!LayoutLocalizedText.Value(2)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>6mm</Height>
+            </TableRow>
+          </TableRows>
+          <RepeatOnNewPage>true</RepeatOnNewPage>
+          <FixedHeader>true</FixedHeader>
+        </Header>
+        <TableColumns>
+          <TableColumn>
+            <Width>96mm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>37mm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>35.52827mm</Width>
+          </TableColumn>
+        </TableColumns>
+      </Table>
+    </ReportItems>
+    <Height>12mm</Height>
+  </Body>
+  <rd:ReportID>90c0bc17-d418-4544-8e04-9930f87651de</rd:ReportID>
+  <LeftMargin>0.9906cm</LeftMargin>
+  <EmbeddedImages>
+    <EmbeddedImage Name="aarfooterleft">
+      <ImageData>iVBORw0KGgoAAAANSUhEUgAAAggAAAAhCAIAAAAzosTjAAAACXBIWXMAAC4jAAAuIwF4pT92AAACk0lEQVR4nO3dQW7bMBBGYd06y5wjvkkXvUCuQLYLsj2ERErowpIixYnbIB3kn8EDPhQCI0vjBwOz7PD4+B0AgN3w8PANAIDdcLk8X56e13+ftuvPH14+cnh8wicP/2XUyycObwe4f/hfYlL4fuHjDXQ27SweWXw8P7+BYZyWsc3jtIzTMrbtui3vnM9jm8dpHtsyTtv1vfPl5WL90/Lu+fqE7YHT/Lfz5XBxeOB0fOB1tv27zIdXH6bdr6f5fL6sBd784O31q1e/fF8KWxY+VqKzbWftyOLj+fkNDLn0VFoqLdWeSsul5dJTbam0VHoqLdd2vSeXnmpPteXar/fk2tdP1Z6vf3p1T2m59rR9PNftOWW9+XRP3e6pNyfnV+TzK9I24faott328ZN6OLlelJ73V9x8PN3Mv3/9VHs+Dklhs8L7c+hs3Vk/svh4Xn4Dw9oRAIDSUmksBgDACYsBAHAy/Pg9f/kQsVGYzmGIRxYfz5Hh5y9S2qIwncMQjyw+niMsBnMUpnMY4pHFx3OExWCOwnQOQzyy+HiOsBjMUZjOYYhHFh/PERaDOQrTOQzxyOLjOcJiMEdhOochHll8PEdYDOYoTOcwxCOLj+cIi8Echekchnhk8fEcYTGYozCdwxCPLD6eIywGcxSmcxjikcXHc4TFYI7CdA5DPLL4eI6wGMxRmM5hiEcWH88RFoM5CtM5DPHI4uM5wmIwR2E6hyEeWXw8R1gM5ihM5zDEI4uP5wiLwRyF6RyGeGTx8RxhMZijMJ3DEI8sPp4jLAZzFKZzGOKRxcdzhMVgjsJ0DkM8svh4jvB/PpujMJ3DEI8sPp4jQ/7qCcKjMJ3DEI8sPp4jw5dPAACQwmIAAJywGAAAJ38AXJcai3BV7VkAAAAadEVYdEF1dGhvcgBVbGVhZCBTeXN0
+ZW1zLCBJbmMuyR0+dgAAAABJRU5ErkJggg==</ImageData>
+      <MIMEType>image/png</MIMEType>
+    </EmbeddedImage>
+    <EmbeddedImage Name="ok">
+      <ImageData>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</ImageData>
+      <MIMEType>image/gif</MIMEType>
+    </EmbeddedImage>
+    <EmbeddedImage Name="aarheaderleft">
+      <ImageData>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</ImageData>
+      <MIMEType>image/png</MIMEType>
+    </EmbeddedImage>
+    <EmbeddedImage Name="aarheaderright">
+      <ImageData>iVBORw0KGgoAAAANSUhEUgAAAAgAAAAZCAYAAAAMhW+1AAAACXBIWXMAAAsSAAALEgHS3X78AAAB3UlEQVR4nH3Iz2vSARjH8eff6NBlF4OF1kUvems3vTkM9t3BOUOQUZuhUhrpDksWxfoBUyj4zkibpOXmISWau+ikjSCaBEs2iqCZ7VAs5+Xd4evUix1efN7PI8d/YZhOB6TZatNsndBstTn82eaw1da6dcLvPx1kr3HE3n5XY9AvfjSPkdrONzRfu/r3/sERUijVKZR2KZTqFIq7A13nY/07oqZqqKktTbqGmt5CTdVQ0zUqtQZy92GJYYrv6kgwkiMQyRGM5AhEswTnswS798v1HcQ9m+TKtSTu2a6r/U6+qCCO6TiXXcs4XAkcrri209om1E3kjG6OYfzhDHJ21E/P+YEe9RO4nUVGLoTQ3KTfIUYuhrgx/wrRGSPoTBF0pig6U4Rzpiinv1sL64jBHENviaG33EFviWGwxDCYtY0uvkGMl5Ywji3R24FeuPcWMdviWGwJLLZltO7v4qNNZMy+wjD34xXEqmSwTa5iUzJYlQzWye4qGR4/fY+Mu/LYp9ewu/Jda4y78tjdeeIrH5AJbxFlpojiLaF4tZ3wFlG8RZ6kPiFTvjJT1zdwzm3g9JVx+sqc/tTVz4gnWMUTqOAJDqriCVR5lv2CzIS36QkNdHib568PkAdqi//5B/uDF1tO2wIhAAAAAElFTkSuQmCC</ImageData>
+      <MIMEType>image/png</MIMEType>
+    </EmbeddedImage>
+    <EmbeddedImage Name="pencil">
+      <ImageData>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</ImageData>
+      <MIMEType>image/gif</MIMEType>
+    </EmbeddedImage>
+    <EmbeddedImage Name="aarfooterright">
+      <ImageData>iVBORw0KGgoAAAANSUhEUgAAAHoAAAAhCAIAAACZciiHAAAACXBIWXMAAC4jAAAuIwF4pT92AAABhUlEQVR4nO2awUrEMBCG89Z79CEUYXtZfQM9qnheFUGQBZGZ9ZBZ7yIipJMED01qunVXl8UU0oGfMvydzPz5rq06OLgWZZOaTC5E2aSq6i5oGp/TWO9vVruY6YQ9zb9ErfYw+wG2m7FWhr1hb2pv2Jm6KWK90XeGnamdYW/qWG/z/XcRXvmNfpgQB9buN98nRTKwTgc22dq7uGR1krata9f1fSDw48F+vbY6ya+QLBKjtqAZNANZ0IyaUVsgBs2gLWhue1BbIAvESLbpQbLhFFlsXq31aEayEI8jxTk6NHd6KPZQz+muwO4KSG7RNMe23R1KnKbQFtsVvePQy99eHxq8cY4KlEVZpJDscmX/e40o4F7A58PT++A5RiJ1frU8Pr1dvrrBo4xB6uwSD2fzl5XgzoX76ORGcAvuAiW4BXe5EtyCu1wJbsFdrgS34C5XgltwlyvBLbjLleAW3OVKcA+AW77m5MQ9m8u3yky4H58/7hdvOHSOkUj+M8mLe/AEo5LgzqovxlVz2OzeyGQAAAAadEVYdEF1dGhvcgBVbGVhZCBTeXN0ZW1zLCBJbmMuyR0+dgAAAABJRU5ErkJggg==</ImageData>
+      <MIMEType>image/png</MIMEType>
+    </EmbeddedImage>
+    <EmbeddedImage Name="aarfooterlogo">
+      <ImageData>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</ImageData>
+      <MIMEType>image/png</MIMEType>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <DataSets>
+    <DataSet Name="LayoutColorCodes">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>SELECT ColorCode
+FROM aarsLayoutColorCodes
+ORDER BY ColorId</CommandText>
+        <DataSourceName>aaReports</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="ColorCode">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ColorCode</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="LayoutLocalizedText">
+      <Query>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>aarsGetLayoutLocalizedText</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@Scope">
+            <Value>FACT._Events Count Report</Value>
+          </QueryParameter>
+          <QueryParameter Name="@LanguageCode">
+            <Value>=Parameters!UserLanguage.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>aaReports</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="TextId">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>TextId</DataField>
+        </Field>
+        <Field Name="LocalizedText">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>LocalizedText</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="LayoutLocalizedTemplateText">
+      <Query>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>aarsGetLayoutLocalizedText</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@Scope">
+            <Value>FACT.ReportTemplate</Value>
+          </QueryParameter>
+          <QueryParameter Name="@LanguageCode">
+            <Value>=Parameters!UserLanguage.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>aaReports</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="TextId">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>TextId</DataField>
+        </Field>
+        <Field Name="LocalizedText">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>LocalizedText</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="SystemParameters">
+      <Query>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>aarsGetSystemParameters</CommandText>
+        <DataSourceName>aaReports</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="Value">
+          <rd:TypeName>System.Object</rd:TypeName>
+          <DataField>Value</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="LayoutTimeZoneInfo">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>aarsGetTimePeriodInfo</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@StartDateTime">
+            <Value>=Format(Parameters!StartDateTime.Value, "s")</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EndDateTime">
+            <Value>=Format(Parameters!EndDateTime.Value, "s")</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Duration">
+            <Value>=Parameters!Duration.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@TimeZoneId">
+            <Value>=Parameters!TimeZoneId.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>aaReports</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="StartDateTimeUTC">
+          <DataField>StartDateTimeUTC</DataField>
+        </Field>
+        <Field Name="EndDateTimeUTC">
+          <DataField>EndDateTimeUTC</DataField>
+        </Field>
+        <Field Name="StartDateTimeLocal">
+          <DataField>StartDateTimeLocal</DataField>
+        </Field>
+        <Field Name="EndDateTimeLocal">
+          <DataField>EndDateTimeLocal</DataField>
+        </Field>
+        <Field Name="TimeZoneId">
+          <DataField>TimeZoneId</DataField>
+        </Field>
+        <Field Name="TimeZone">
+          <DataField>TimeZone</DataField>
+        </Field>
+        <Field Name="ServerTimeZone">
+          <DataField>ServerTimeZone</DataField>
+        </Field>
+        <Field Name="DurationId">
+          <DataField>DurationId</DataField>
+        </Field>
+        <Field Name="Duration">
+          <DataField>Duration</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="LayoutDurationChoices">
+      <Query>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>aarsGetLayoutLocalizedText</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@Scope">
+            <Value>="aaTimeRangeEnum"</Value>
+          </QueryParameter>
+          <QueryParameter Name="@LanguageCode">
+            <Value>=Parameters!UserLanguage.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>aaReports</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="TextId">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>TextId</DataField>
+        </Field>
+        <Field Name="LocalizedText">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>LocalizedText</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="EventCount">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>rpt_FACT_EventsCountPieChart</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@StartDateTimeUTC">
+            <Value>=Parameters!StartDateTimeUTC.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EndDateTimeUTC">
+            <Value>=Parameters!EndDateTimeUTC.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@TimeZoneId">
+            <Value>=Parameters!TimeZoneIdActual.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ReasonGrpDesc">
+            <Value>=Code.WhereCondition(Parameters!ReasonGroup.Value)</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ReasonDesc">
+            <Value>=Code.WhereCondition(Parameters!Reason.Value)</Value>
+          </QueryParameter>
+          <QueryParameter Name="@UtilStateDesc">
+            <Value>=Code.WhereCondition(Parameters!UtilState.Value)</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ShiftDesc">
+            <Value>=Code.WhereCondition(Parameters!ShiftName.Value)</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EntityName">
+            <Value>=Code.WhereCondition(Parameters!Entity.Value)</Value>
+          </QueryParameter>
+          <QueryParameter Name="@LossType">
+            <Value>=Code.WhereCondition(Parameters!Losstype.Value)</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ProductID">
+            <Value>=Code.WhereCondition(Parameters!ProductID.Value)</Value>
+          </QueryParameter>
+          <QueryParameter Name="@WOID">
+            <Value>=IIF(Parameters!WOID.Value="ALL","ALL","N'" &amp; Code.SubstituteSingleQuote(Parameters!WOID.Value) &amp; "'")</Value>
+          </QueryParameter>
+          <QueryParameter Name="@UserID">
+            <Value>=Code.WhereCondition(Parameters!UserID.Value)</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Category1">
+            <Value>=Code.WhereCondition(Parameters!Category1.Value)</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Category2">
+            <Value>=Code.WhereCondition(Parameters!Category2.Value)</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Category3">
+            <Value>=Code.WhereCondition(Parameters!Category3.Value)</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Category4">
+            <Value>=Code.WhereCondition(Parameters!Category4.Value)</Value>
+          </QueryParameter>
+          <QueryParameter Name="@MinEventDuration">
+            <Value>=Parameters!MinEventDuration.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@LanguageCode">
+            <Value>=Parameters!UserLanguage.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@LabelForOtherReasons">
+            <Value>=Parameters!LayoutLocalizedText.Value(3)</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ExecuteAgainstRestoreDB">
+            <Value>=1</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>aaReports</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="ReasonDesc">
+          <DataField>ReasonDesc</DataField>
+        </Field>
+        <Field Name="CountEvent">
+          <DataField>CountEvent</DataField>
+        </Field>
+        <Field Name="CountEventPercent">
+          <DataField>CountEventPercent</DataField>
+        </Field>
+        <Field Name="ColorCode">
+          <DataField>ColorCode</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Losstype">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>rpt_FACT_LossType</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@LanguageCode">
+            <Value>=Parameters!UserLanguage.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>aaReports</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="TextId">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>TextId</DataField>
+        </Field>
+        <Field Name="LocalizedText">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>LocalizedText</DataField>
+        </Field>
+        <Field Name="LossType">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>LossType</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="TimeZone">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>aarsGetTimePeriodInfo</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@StartDateTime">
+            <Value>=Parameters!StartDateTime.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EndDateTime">
+            <Value>=Parameters!EndDateTime.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@TimeZoneId">
+            <Value>=Parameters!TimeZoneId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Duration">
+            <Value>=Parameters!Duration.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>aaReports</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="ActualTimeZoneId">
+          <DataField>TimeZoneId</DataField>
+        </Field>
+        <Field Name="TimeZoneDesc">
+          <DataField>TimeZone</DataField>
+        </Field>
+        <Field Name="StartDateTimeUTC">
+          <DataField>StartDateTimeUTC</DataField>
+        </Field>
+        <Field Name="EndDateTimeUTC">
+          <DataField>EndDateTimeUTC</DataField>
+        </Field>
+        <Field Name="StartTimeLocal">
+          <DataField>StartDateTimeLocal</DataField>
+        </Field>
+        <Field Name="EndTimeLocal">
+          <DataField>EndDateTimeLocal</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Author>Invensys Systems, Inc.</Author>
+  <Code>Function CultureLanguageCode As String
+   Dim oCulture As System.Globalization.CultureInfo
+   CultureLanguageCode =   LCase(oCulture.CurrentUICulture.Name)
+End Function
+
+Function ClipString(ByVal aString As String, ByVal Max As Integer) As String
+    aString = Trim(aString)
+    If Len(aString) &gt; Max And Max &gt; 0 Then
+        ClipString = Left(aString, Max - 1) &amp; "…"
+    Else
+        ClipString = aString
+    End If
+End Function
+
+Function SectionHidden(ByVal SectionList As Parameter, ByVal SectionName As String) As Boolean
+
+    Dim Position As Integer = 0
+    Dim IsVisible As Boolean = False
+
+    Do
+        If SectionList.Value(Position) = "ALL" Or SectionList.Value(Position) = SectionName Then
+            IsVisible = True
+        End If
+        Position = Position + 1
+    Loop While Position &lt; SectionList.Value.Length And Not (IsVisible)
+
+    SectionHidden = Not (IsVisible)
+End Function
+
+Function ChartColor(ByVal AllParameters As Parameters, ByVal Index As Integer) As String
+     Dim BaseColor As Integer = 18
+     Dim BaseGray As Integer = 30
+     Dim IsGray As Boolean = AllParameters("LayoutIsGrayScale").Value
+
+     If IsGray Then
+        ChartColor = AllParameters("LayoutColorCodes").Value( BaseGray + Index )
+    Else
+        ChartColor = AllParameters("LayoutColorCodes").Value( BaseColor + Index )
+    End If
+End Function
+
+Function TrendURL( ByVal SystemParameters As Parameter, ReportServerUrl As String, TagName As String, StartTime As DateTime, EndTime As DateTime ) As String
+    Dim ServerStart As Integer
+    If (ReportServerUrl = "")
+       TrendURL = SystemParameters.Value(4) ' Hostname
+    Else
+       ServerStart = InStr( ReportServerUrl, "//" ) + 2
+       TrendURL = Mid(ReportServerUrl, 1, InStr( ServerStart, ReportServerUrl, "/" )-1 )
+    End If
+    TrendURL = TrendURL &amp;  SystemParameters.Value(3) ' Virtual directory
+    TrendURL = TrendURL &amp; "/Applications/HistClientReportingSite/redirect.asp?page=Trend.aspx"
+    TrendURL = TrendURL &amp; "?SV=1"
+    TrendURL = TrendURL &amp;  SystemParameters.Value(5)
+    TrendURL = TrendURL &amp; "&amp;Tags=" &amp; TagName
+    TrendURL = TrendURL &amp; "&amp;Start=" &amp; Format( StartTime, "yyyy-MM-dd hh:mm:ss" )
+    TrendURL = TrendURL &amp; "&amp;End=" &amp; Format( EndTime, "yyyy-MM-dd hh:mm:ss" )
+End Function
+
+Function FormatValue(ByVal PV As Object, ByVal Precision As Integer) As String
+    If IsNumeric(PV) Then
+        Dim Places As Integer = 5 - CInt(System.Math.Log10(System.Math.Abs(CDbl(PV)))) + Precision
+        If Places &lt; 0 Then
+	Places = 1
+        End If
+        FormatValue = FormatNumber(CDbl(PV), Places )
+    Else
+        FormatValue = ClipString(PV,14)
+    End If
+End Function
+
+Public Function CalculTime(ByVal SecondTime As Integer) As String
+        Dim s As Integer
+        Dim m As Integer
+        Dim h As Integer
+        Dim d As Integer
+        Dim tmp As Integer
+        Dim ret As String
+
+        tmp = SecondTime
+        d = Int(tmp / 24 / 60 / 60)
+
+        tmp = tmp - d * 24 * 60 * 60
+        h = Int(tmp / 60 / 60)
+
+        tmp = tmp - h * 60 * 60
+        m = Int(tmp / 60)
+
+        tmp = tmp - m * 60
+        s = tmp
+
+        If d &gt; 0 Then
+            If d &lt; 10 Then
+                ret = ret + Mid(CStr(d + 100), 2)
+            Else
+                ret = ret + CStr(d)
+            End If
+            ret = ret + ":"
+        End If
+        If h &gt; 0 Then ret = ret + Mid(CStr(h + 100), 2) + ":"
+        ret = ret + Mid(CStr(m + 100), 2) 
+        If d=0 And h=0 And m=0 Then
+	ret = CStr(s) + " sec"
+        End If
+        CalculTime = ret
+    End Function
+    
+Function CalculTimeOld(SecondTime As integer) As String
+   Dim s as Integer
+   Dim m as Integer
+   Dim h as Integer
+   Dim d as Integer
+   Dim tmp as Integer
+   Dim ret as String
+
+   tmp = SecondTime
+   d = Int(tmp/24/60/60)
+
+   tmp = tmp - d*24*60*60
+   h = Int(tmp/60/60)
+
+   tmp = tmp - h*60*60
+   m = Int(tmp/60)
+
+   tmp = tmp - m*60
+   s = tmp
+
+   If d&gt;0 Then ret = Cstr(d) + "d "
+   If d&gt;0 Or h&gt;0 Then ret = ret + right(Cstr(h+100),2) + ":"
+   ret = ret + right(Cstr(m+100),2) + ":"
+   ret = ret + right(Cstr(s+100),2)
+   CalculTimeOld = ret
+End Function
+
+Public Function WhereCondition(ByVal PASelectedValues As Object()) As String
+
+
+        Dim res As String
+        res = ""
+
+        If (PASelectedValues(0) &lt;&gt; "ALL") Then
+            res = String.Format("({0})", SplitStr(PASelectedValues))
+        Else
+            res = ""
+        End If
+        WhereCondition = res
+    End Function
+
+    Public Function SubstituteSingleQuote(ByVal strText As String) As String
+        Dim result As String
+        result = ""
+
+        If (IsNothing(strText) Or Len(strText) = 0) Then
+            SubstituteSingleQuote = ""
+        Else
+            Dim lCount As Integer
+            lCount = Len(strText)
+            Dim i As Integer
+            Dim thisChar As String
+            For i = 1 To lCount
+                thisChar = Mid(strText, i, 1)
+                If (thisChar = "'") Then
+                    result = result + "'"
+                End If
+                result = result + thisChar
+            Next
+            SubstituteSingleQuote = result
+        End If
+    End Function
+
+    Public Function SplitStr(ByVal ds As Object()) As String
+        Dim i As Integer
+        Dim res As String
+        res = ""
+        i = 0
+        For i = 0 To (ds.Length - 1)
+            If i &gt; 0 Then
+                res = res &amp; ", "
+            End If
+            If (ds(i) &lt;&gt; "") Then
+                res = res &amp; "N'" &amp; SubstituteSingleQuote(CStr(ds(i))) &amp; "'"
+            Else
+                res = res &amp; "N''"
+            End If
+        Next i
+        If (res.Length = 0) Then
+            res = "null"
+        End If
+        SplitStr = res
+    End Function
+</Code>
+  <Width>16.85283cm</Width>
+  <InteractiveHeight>260mm</InteractiveHeight>
+  <Description>Production Events Summary</Description>
+  <Language>=User!Language</Language>
+  <DataElementName>ArchestrA</DataElementName>
+  <TopMargin>0.9906cm</TopMargin>
+  <PageHeight>297mm</PageHeight>
+</Report>

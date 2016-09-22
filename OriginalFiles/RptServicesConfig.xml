@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReportSources xmlns = "aaReportsSchema.xsd">
+	<SourceDatabase name="FIV34">
+		<WebConfig>
+			<appSetting/>
+		</WebConfig>
+		<ReportServer>
+			<Deploy file="RptServicesDeploy.sql" />
+		</ReportServer>
+		<Reporting>
+			<Folder name="MES" description="Folder for MES Reports">
+				<Report name="Production by Entity" file="Production Entity.rdl" description="Provides information about produced data for a selected entities for a given period"/>
+				<Report name="OEE by Shift Trend" file="OEE Shift Trend.rdl" description="Provides information about produced data for a selected entities for a given period"/>
+				<Report name="Genealogy by Work Order" file="Genealogy Work Order.rdl" description="Provides information about produced data for a selected entities for a given period"/>
+				<Report name="Downtime Analysis" file="Downtime Analysis.rdl" description="Provides information about produced data for a selected entities for a given period"/>
+				<Report name="Production Event Summary for Utilization" file="Production Event Summary for Utilization.rdl" description="Production Event Summary for Utilization"/>
+				<Report name="Production Event Summary by Utilization Reason Group" file="Production Event Summary by Utilization Reason Group.rdl" description="Production Event Summary by Utilization Reason Group"/>
+				<Report name="OEE Analysis" file="OEE Analysis.rdl" description="OEE Analysis"/>
+				<Report name="OEE Details" file="OEE Details.rdl" description="OEE Details"/>
+				<Report name="_Trend Data" file="_Trend Data.rdl" description="_Trend Data"/>
+				<Report name="_OEE Analysis by Period" file="_OEE Analysis by Period.rdl" description="_OEE Analysis by Period"/>
+				<Report name="_Losses Data" file="_Losses Data.rdl" description="_Losses Data"/>
+				<Report name="_Events Pareto" file="_Events Pareto.rdl" description="_Events Pareto"/>
+				<Report name="_Events Duration" file="_Events Duration.rdl" description="_Events Duration"/>
+				<Report name="_Events Count" file="_Events Count.rdl" description="_Events Count"/>
+				<Report name="_Events Chrono" file="_Events Chrono.rdl" description="_Events Chrono"/>
+				<Report name="_Event Categories Performance Losses" file="_Event Categories Performance Losses.rdl" description="_Event Categories Performance Losses"/>
+				<Report name="_Event Categories Availability Losses" file="_Event Categories Availability Losses.rdl" description="_Event Categories Availability Losses"/>
+        			<Report name="_EventDetails" file="_EventDetails.rdl" description="Internal report. Lists PAs and EPAs for a specific EventGlobId"/>
+        			<Report name="Events Report" file="Events Report.rdl" description="Table of events filtered on PAs"/>
+        			<Report name="Genealogy Report" file="Genealogy Report.rdl" description="Provides Genealogy and ReverseGenealogy for events filtered on PAs"/>
+        			<Report name="_Genealogy Detail Report" file="_Genealogy Detail Report.rdl" description="Internal report. Provide Genealogy Data for a single production attribute."/>
+        			<Report name="_Genealogy Expanded Report" file="_Genealogy Expanded Report.rdl" description="Internal report. Provide Genealogy Data for multiple production attributes."/>
+        			<Report name="Production Report" file="Production Report.rdl" description="Provides information about produced events filtered and grouped by user configurable criteria"/>
+				<Report name="Quality Summary" file="Quality Summary.rdl" description="Provides quality summary information about selected quality data"/>
+				<Report name="_Quality Characteristic Detail Chart" file="_Quality Characteristic Detail Chart.rdl" description="Sub report that provides quality characteristic detail chart information about selected quality data"/>
+				<Report name="Quality Characteristic Detail" file="Quality Characteristic Detail.rdl" description="Provides quality characteristic detail information about selected quality data"/>
+			</Folder>
+		</Reporting>
+	</SourceDatabase>
+</ReportSources>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ReportSources xmlns = "aaReportsSchema.xsd">
+	<SourceDatabase name="FIV34">
+		<WebConfig>
+			<appSetting/>
+		</WebConfig>
+		<ReportServer>
+			<Deploy file="RptServicesDeployEmpty.sql" />
+		</ReportServer>
+		<Reporting>
+		</Reporting>
+	</SourceDatabase>
+</ReportSources>

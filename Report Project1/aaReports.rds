@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="aaReports">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=USSTLWWIS;Initial Catalog=aaReports</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>c009a807-8804-4e34-8f11-88e45c25cd2e</DataSourceID>
+</RptDataSource>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "HenkelOEEKPIReports", "Report Project1\HenkelOEEKPIReports.rptproj", "{E7962444-081F-4DDC-9E2A-9EFA2738721C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7962444-081F-4DDC-9E2A-9EFA2738721C}.Debug|Default.ActiveCfg = Debug
+		{E7962444-081F-4DDC-9E2A-9EFA2738721C}.Debug|Default.Build.0 = DebugLocal
+		{E7962444-081F-4DDC-9E2A-9EFA2738721C}.Debug|Default.Deploy.0 = DebugLocal
+		{E7962444-081F-4DDC-9E2A-9EFA2738721C}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{E7962444-081F-4DDC-9E2A-9EFA2738721C}.DebugLocal|Default.Build.0 = DebugLocal
+		{E7962444-081F-4DDC-9E2A-9EFA2738721C}.Release|Default.ActiveCfg = Release
+		{E7962444-081F-4DDC-9E2A-9EFA2738721C}.Release|Default.Build.0 = Release
+		{E7962444-081F-4DDC-9E2A-9EFA2738721C}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

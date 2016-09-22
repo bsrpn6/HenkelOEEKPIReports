@@ -1,0 +1,986 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="aaReports">
+      <rd:DataSourceID>54031b10-9cf2-49ae-ac87-71d98e577dc7</rd:DataSourceID>
+      <DataSourceReference>aaReports</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Description>Reports Template 0.1</Description>
+  <ReportParameters>
+    <ReportParameter Name="UserLanguage">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=Code.CultureLanguageCode()</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="Scope">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>PEM.EventDetails Report</Value>
+        </Values>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="LayoutLocalizedText">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>LayoutLocalizedText</DataSetName>
+          <ValueField>LocalizedText</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <MultiValue>true</MultiValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="SystemParameters">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>SystemParameters</DataSetName>
+          <ValueField>Value</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <MultiValue>true</MultiValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="LayoutColorCodes">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>LayoutColorCodes</DataSetName>
+          <ValueField>ColorCode</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <MultiValue>true</MultiValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="EventID">
+      <DataType>String</DataType>
+      <Prompt>Event ID:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="TimeZoneId">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>-1</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>TimeZoneId</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="LayoutLocalizedTextCustom">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>LocalizedLabels</DataSetName>
+          <ValueField>LocalizedText</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>LocalizedLabels</DataSetName>
+          <ValueField>LocalizedText</ValueField>
+          <LabelField>LocalizedText</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>false</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:GridSpacing>1mm</rd:GridSpacing>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <RightMargin>0.9906cm</RightMargin>
+  <LeftMargin>0.9906cm</LeftMargin>
+  <PageHeader>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <ReportItems>
+      <Textbox Name="SiteName">
+        <ToolTip>=CSTR(Parameters!SystemParameters.Value(0))</ToolTip>
+        <Top>0.38333in</Top>
+        <Width>120mm</Width>
+        <Style>
+          <Color>=Parameters!LayoutColorCodes.Value(6)</Color>
+          <FontFamily>Tahoma</FontFamily>
+          <FontWeight>700</FontWeight>
+          <TextAlign>Right</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>2</ZIndex>
+        <Left>67.14815mm</Left>
+        <Height>5mm</Height>
+        <Value>=Parameters!SystemParameters.Value(0)</Value>
+      </Textbox>
+      <Image Name="SiteLogo">
+        <Sizing>FitProportional</Sizing>
+        <ToolTip>=Iif(Globals!ReportServerUrl="",Parameters!SystemParameters.Value(1),Globals!ReportServerUrl &amp; Parameters!SystemParameters.Value(1).ToString())</ToolTip>
+        <Width>44.449mm</Width>
+        <Source>External</Source>
+        <Style />
+        <ZIndex>1</ZIndex>
+        <Left>1mm</Left>
+        <Height>1.40001cm</Height>
+        <Value>=Iif(Globals!ReportServerUrl="",Parameters!SystemParameters.Value(1),Globals!ReportServerUrl &amp; Parameters!SystemParameters.Value(1).ToString())</Value>
+      </Image>
+      <Textbox Name="ReportTitle">
+        <ToolTip>=CSTR(Parameters!LayoutLocalizedText.Value(0))</ToolTip>
+        <Top>0.02895in</Top>
+        <Width>120mm</Width>
+        <Style>
+          <Color>=Parameters!LayoutColorCodes.Value(6)</Color>
+          <BorderColor>
+            <Default>=Parameters!LayoutColorCodes.Value(6)</Default>
+          </BorderColor>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <FontFamily>Tahoma</FontFamily>
+          <FontSize>14pt</FontSize>
+          <FontWeight>700</FontWeight>
+          <TextAlign>Right</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <Left>67.14815mm</Left>
+        <Height>8.001mm</Height>
+        <Value>=Parameters!LayoutLocalizedText.Value(0)</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>1.5cm</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+    <Style>
+      <BackgroundColor>White</BackgroundColor>
+    </Style>
+  </PageHeader>
+  <BottomMargin>0.9906cm</BottomMargin>
+  <rd:ReportID>90c0bc17-d418-4544-8e04-9930f87651de</rd:ReportID>
+  <EmbeddedImages>
+    <EmbeddedImage Name="aarfooterleft">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>iVBORw0KGgoAAAANSUhEUgAAAggAAAAhCAIAAAAzosTjAAAACXBIWXMAAC4jAAAuIwF4pT92AAACk0lEQVR4nO3dQW7bMBBGYd06y5wjvkkXvUCuQLYLsj2ERErowpIixYnbIB3kn8EDPhQCI0vjBwOz7PD4+B0AgN3w8PANAIDdcLk8X56e13+ftuvPH14+cnh8wicP/2XUyycObwe4f/hfYlL4fuHjDXQ27SweWXw8P7+BYZyWsc3jtIzTMrbtui3vnM9jm8dpHtsyTtv1vfPl5WL90/Lu+fqE7YHT/Lfz5XBxeOB0fOB1tv27zIdXH6bdr6f5fL6sBd784O31q1e/fF8KWxY+VqKzbWftyOLj+fkNDLn0VFoqLdWeSsul5dJTbam0VHoqLdd2vSeXnmpPteXar/fk2tdP1Z6vf3p1T2m59rR9PNftOWW9+XRP3e6pNyfnV+TzK9I24faott328ZN6OLlelJ73V9x8PN3Mv3/9VHs+Dklhs8L7c+hs3Vk/svh4Xn4Dw9oRAIDSUmksBgDACYsBAHAy/Pg9f/kQsVGYzmGIRxYfz5Hh5y9S2qIwncMQjyw+niMsBnMUpnMY4pHFx3OExWCOwnQOQzyy+HiOsBjMUZjOYYhHFh/PERaDOQrTOQzxyOLjOcJiMEdhOochHll8PEdYDOYoTOcwxCOLj+cIi8Echekchnhk8fEcYTGYozCdwxCPLD6eIywGcxSmcxjikcXHc4TFYI7CdA5DPLL4eI6wGMxRmM5hiEcWH88RFoM5CtM5DPHI4uM5wmIwR2E6hyEeWXw8R1gM5ihM5zDEI4uP5wiLwRyF6RyGeGTx8RxhMZijMJ3DEI8sPp4jLAZzFKZzGOKRxcdzhMVgjsJ0DkM8svh4jvB/PpujMJ3DEI8sPp4jQ/7qCcKjMJ3DEI8sPp4jw5dPAACQwmIAAJywGAAAJ38AXJcai3BV7VkAAAAadEVYdEF1dGhvcgBVbGVhZCBTeXN0
+ZW1zLCBJbmMuyR0+dgAAAABJRU5ErkJggg==</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="aarheaderleft">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="aarheaderright">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>iVBORw0KGgoAAAANSUhEUgAAAAgAAAAZCAYAAAAMhW+1AAAACXBIWXMAAAsSAAALEgHS3X78AAAB3UlEQVR4nH3Iz2vSARjH8eff6NBlF4OF1kUvems3vTkM9t3BOUOQUZuhUhrpDksWxfoBUyj4zkibpOXmISWau+ikjSCaBEs2iqCZ7VAs5+Xd4evUix1efN7PI8d/YZhOB6TZatNsndBstTn82eaw1da6dcLvPx1kr3HE3n5XY9AvfjSPkdrONzRfu/r3/sERUijVKZR2KZTqFIq7A13nY/07oqZqqKktTbqGmt5CTdVQ0zUqtQZy92GJYYrv6kgwkiMQyRGM5AhEswTnswS798v1HcQ9m+TKtSTu2a6r/U6+qCCO6TiXXcs4XAkcrri209om1E3kjG6OYfzhDHJ21E/P+YEe9RO4nUVGLoTQ3KTfIUYuhrgx/wrRGSPoTBF0pig6U4Rzpiinv1sL64jBHENviaG33EFviWGwxDCYtY0uvkGMl5Ywji3R24FeuPcWMdviWGwJLLZltO7v4qNNZMy+wjD34xXEqmSwTa5iUzJYlQzWye4qGR4/fY+Mu/LYp9ewu/Jda4y78tjdeeIrH5AJbxFlpojiLaF4tZ3wFlG8RZ6kPiFTvjJT1zdwzm3g9JVx+sqc/tTVz4gnWMUTqOAJDqriCVR5lv2CzIS36QkNdHib568PkAdqi//5B/uDF1tO2wIhAAAAAElFTkSuQmCC</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="aarfooterright">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>iVBORw0KGgoAAAANSUhEUgAAAHoAAAAhCAIAAACZciiHAAAACXBIWXMAAC4jAAAuIwF4pT92AAABhUlEQVR4nO2awUrEMBCG89Z79CEUYXtZfQM9qnheFUGQBZGZ9ZBZ7yIipJMED01qunVXl8UU0oGfMvydzPz5rq06OLgWZZOaTC5E2aSq6i5oGp/TWO9vVruY6YQ9zb9ErfYw+wG2m7FWhr1hb2pv2Jm6KWK90XeGnamdYW/qWG/z/XcRXvmNfpgQB9buN98nRTKwTgc22dq7uGR1krata9f1fSDw48F+vbY6ya+QLBKjtqAZNANZ0IyaUVsgBs2gLWhue1BbIAvESLbpQbLhFFlsXq31aEayEI8jxTk6NHd6KPZQz+muwO4KSG7RNMe23R1KnKbQFtsVvePQy99eHxq8cY4KlEVZpJDscmX/e40o4F7A58PT++A5RiJ1frU8Pr1dvrrBo4xB6uwSD2fzl5XgzoX76ORGcAvuAiW4BXe5EtyCu1wJbsFdrgS34C5XgltwlyvBLbjLleAW3OVKcA+AW77m5MQ9m8u3yky4H58/7hdvOHSOkUj+M8mLe/AEo5LgzqovxlVz2OzeyGQAAAAadEVYdEF1dGhvcgBVbGVhZCBTeXN0ZW1zLCBJbmMuyR0+dgAAAABJRU5ErkJggg==</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="aarfooterlogo">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <DataSets>
+    <DataSet Name="EventDetailsPA">
+      <Fields>
+        <Field Name="PAName">
+          <DataField>PAName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AttrValue">
+          <DataField>AttrValue</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="UILabel">
+          <DataField>UILabel</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>aaReports</DataSourceName>
+        <CommandText>select 'Location' as PAName, Location as AttrValue, 'Location' as UILabel from MES_ResourceActual_Restore where EventGlobId = @EventID
+UNION
+select 'Lot' as PAName, Lot as AttrValue,'Lot' as UILabel from MES_ResourceActual_Restore where EventGlobId = @EventID
+UNION
+select 'Sublot' as PAName, Sublot as AttrValue,'Sublot' as UILabel from MES_ResourceActual_Restore where EventGlobId = @EventID
+UNION
+select 'ProductionRequestId' as PAName, ProductionRequestId as AttrValue, 'ProductionRequestId' as UILabel from MES_ResourceActual_Restore where EventGlobId = @EventID
+UNION
+select 'ProcessSegmentId' as PAName, ProcessSegmentId as AttrValue, 'ProcessSegmentId' as UILabel from MES_ResourceActual_Restore where EventGlobId = @EventID
+UNION
+select 'SegmentResponseId' as PAName, SegmentResponseId as AttrValue, 'SegmentResponseId' as UILabel from MES_ResourceActual_Restore where EventGlobId = @EventID
+UNION
+select 'QuantityUnitOfMeasure' as PAName, QuantityUnitOfMeasure as AttrValue, 'QuantityUnitOfMeasure' as UILabel from MES_ResourceActual_Restore where EventGlobId = @EventID
+UNION
+select 'SubsegmentId' as PAName, SubsegmentId as AttrValue, 'SubsegmentId' as UILabel from MES_ResourceActual_Restore where EventGlobId = @EventID
+UNION
+select 'SerialNumber' as PAName, SerialNumber as AttrValue, 'SerialNumber' as UILabel from MES_ResourceActual_Restore where EventGlobId = @EventID
+UNION
+select 'Personnel' as PAName, Personnel as AttrValue, 'Personnel' as UILabel from MES_ResourceActual_Restore where EventGlobId = @EventID
+UNION
+select 'MaterialType' as PAName, MaterialType as AttrValue, 'MaterialType' as UILabel from MES_ResourceActual_Restore where EventGlobId = @EventID
+UNION
+select 'SegmentRequirementId' as PAName, SegmentRequirementId as AttrValue, 'SegmentRequirementId' as UILabel from MES_ResourceActual_Restore where EventGlobId = @EventID
+UNION
+select 'GenealogyId' as PAName, GenealogyId as AttrValue, 'GenealogyId' as UILabel from MES_ResourceActual_Restore where EventGlobId = @EventID
+UNION
+select 'EventId' as PAName, CAST(EventGlobId AS VARCHAR) as AttrValue, 'Event Id' as UILabel from MES_ResourceActual_Restore where EventGlobId = @EventID
+UNION
+select 'EventType' as PAName, EventType as AttrValue, 'Event Type' as UILabel from MES_ResourceActual_Restore where EventGlobId = @EventID
+Union
+select 'Quantity' as PAName, Cast(Quantity as varchar) as AttrValue, 'Quantity' as UILabel from MES_ResourceActual_Restore where EventGlobId = @EventID
+Union
+select 'QuantityUnitOfMeasure' as PAName, QuantityUnitOfMeasure as AttrValue, 'QuantityUnitOfMeasure' as UILabel from MES_ResourceActual_Restore where EventGlobId= @EventID
+Union
+select 'EventDateUtc' as PAName, Cast(EventDateUtc as varchar) as AttrValue, 'Event Time' as UILabel from MES_ResourceActual_Restore where EventGlobId = @EventID</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@EventID">
+            <Value>=Parameters!EventID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="EventDetailsEPA">
+      <Fields>
+        <Field Name="AttrName">
+          <DataField>AttrName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Type">
+          <DataField>Type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Value_Type">
+          <DataField>Value_Type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AttrValue">
+          <DataField>AttrValue</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="grp_id">
+          <DataField>grp_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="data_log_48_Row_Id">
+          <DataField>data log 48 Row Id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Job_Event_Row_Id">
+          <DataField>Job Event Row Id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>aaReports</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>MES_GetEPAValueByIndex</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@rowId">
+            <Value>=Parameters!EventID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ExecuteAgainstRestoreDB">
+            <Value>=1</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="EventProperties">
+      <Fields>
+        <Field Name="EventDate">
+          <DataField>EventTimeLocal</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="EventName">
+          <DataField>EventName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>aaReports</DataSourceName>
+        <CommandText>DECLARE @ActualTimeZoneId int
+
+-- Need to determine if the parameter values came from the ArchestrA Reports parameter page or the standard Microsoft page
+-- For the logic below to work correctly, the report should include an integer parameter "TimeZoneId" with a default value of "-1"
+IF @TimeZoneId = -1
+	-- The ArchestrA Reports parameter page will never supply a value of "-1". Assume the time is in "server local" time rather than UTC
+	SET @ActualTimeZoneId = -100
+ELSE
+BEGIN
+	-- This was set by the Parameter page and will be expressed in UTC
+    SET @ActualTimeZoneId = @TimeZoneId
+END
+
+SELECT     dbo.UtcToTimeZone(EventDateUtc, @ActualTimeZoneId) as EventTimeLocal, EventName
+FROM         MES_ResourceActual_Restore
+where EventGlobId=@EventID</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@TimeZoneId">
+            <Value>=Parameters!TimeZoneId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EventID">
+            <Value>=Parameters!EventID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="LayoutColorCodes">
+      <Fields>
+        <Field Name="ColorCode">
+          <DataField>ColorCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>aaReports</DataSourceName>
+        <CommandText>SELECT ColorCode
+FROM aarsLayoutColorCodes
+ORDER BY ColorId</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="LayoutLocalizedText">
+      <Fields>
+        <Field Name="TextId">
+          <DataField>TextId</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="LocalizedText">
+          <DataField>LocalizedText</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>aaReports</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>aarsGetLayoutLocalizedText</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@Scope">
+            <Value>=Parameters!Scope.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@LanguageCode">
+            <Value>=Parameters!UserLanguage.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="SystemParameters">
+      <Fields>
+        <Field Name="Value">
+          <DataField>Value</DataField>
+          <rd:TypeName>System.Object</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>aaReports</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>aarsGetSystemParameters</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@LanguageCode">
+            <Value>=Parameters!UserLanguage.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="LocalizedLabels">
+      <Fields>
+        <Field Name="TextId">
+          <DataField>TextId</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="LocalizedText">
+          <DataField>LocalizedText</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>aaReports</DataSourceName>
+        <CommandText>declare @LocalizedText table
+
+(
+
+            TextId int,    
+
+            LocalizedText nvarchar(max) NULL  
+
+)
+
+ 
+
+insert into @LocalizedText
+
+EXECUTE aarsGetLayoutLocalizedText   @Scope, @LanguageCode
+
+ 
+
+select * from 
+
+@LocalizedText where TextId&gt;=1000 order by TextId</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@Scope">
+            <Value>=Parameters!Scope.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@LanguageCode">
+            <Value>=Parameters!UserLanguage.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Author>Invensys Systems, Inc.</Author>
+  <Code>        Function ClipString( aString As String, Max As Integer ) As String
+            aString = Trim(aString)
+            If Len(aString) &gt; Max and Max &gt; 0 Then
+                ClipString = Left(aString, Max) &amp; "…"
+            Else
+                ClipString = aString
+            End If
+        End Function
+
+Public Function CultureLanguageCode As String
+   Dim oCulture As System.Globalization.CultureInfo
+   CultureLanguageCode = LCase(oCulture.CurrentUICulture.Name)
+End Function
+</Code>
+  <Width>18.95cm</Width>
+  <Body>
+    <ColumnSpacing>10mm</ColumnSpacing>
+    <ReportItems>
+      <Rectangle Name="TabularSection">
+        <ReportItems>
+          <Table Name="tblPA">
+            <ZIndex>2</ZIndex>
+            <DataSetName>EventDetailsPA</DataSetName>
+            <KeepTogether>true</KeepTogether>
+            <Top>0.6cm</Top>
+            <Width>7.44187in</Width>
+            <Details>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="Scope">
+                          <rd:DefaultName>Scope</rd:DefaultName>
+                          <ToolTip>=IIF(IsNothing(Fields!UILabel.Value),Fields!PAName.Value,Fields!UILabel.Value)</ToolTip>
+                          <Style>
+                            <BackgroundColor>=Iif( RowNumber(Nothing) Mod 2, Parameters!LayoutColorCodes.Value(0), Parameters!LayoutColorCodes.Value(1) )</BackgroundColor>
+                            <BorderColor>
+                              <Default>=Parameters!LayoutColorCodes.Value(8)</Default>
+                              <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                              <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                              <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Left>None</Left>
+                              <Right>Solid</Right>
+                              <Top>None</Top>
+                            </BorderStyle>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>9pt</FontSize>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>1</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=IIF(IsNothing(Fields!UILabel.Value),Fields!PAName.Value,Fields!UILabel.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="TextId">
+                          <rd:DefaultName>TextId</rd:DefaultName>
+                          <ToolTip>=CSTR(Fields!AttrValue.Value)</ToolTip>
+                          <Style>
+                            <BackgroundColor>=Iif( RowNumber(Nothing) Mod 2, Parameters!LayoutColorCodes.Value(0), Parameters!LayoutColorCodes.Value(2) )</BackgroundColor>
+                            <BorderColor>
+                              <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                              <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                              <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Left>Solid</Left>
+                              <Right>Solid</Right>
+                              <Top>None</Top>
+                            </BorderStyle>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>9pt</FontSize>
+                            <TextAlign>Left</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!AttrValue.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>6mm</Height>
+                </TableRow>
+              </TableRows>
+              <Sorting>
+                <SortBy>
+                  <SortExpression>=IIF(IsNothing(Fields!UILabel.Value),Fields!PAName.Value,Fields!UILabel.Value)</SortExpression>
+                  <Direction>Ascending</Direction>
+                </SortBy>
+              </Sorting>
+            </Details>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox5">
+                          <rd:DefaultName>textbox5</rd:DefaultName>
+                          <ToolTip>=Parameters!LayoutLocalizedTextCustom.Value(0)</ToolTip>
+                          <Style>
+                            <Color>=Parameters!LayoutColorCodes.Value(6)</Color>
+                            <BackgroundColor>=Parameters!LayoutColorCodes.Value(1)</BackgroundColor>
+                            <BorderColor>
+                              <Default>=Parameters!LayoutColorCodes.Value(8)</Default>
+                              <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                              <Top>=Parameters!LayoutColorCodes.Value(6)</Top>
+                              <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Left>None</Left>
+                              <Right>Solid</Right>
+                              <Top>Solid</Top>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <BorderWidth>
+                              <Left>0.75pt</Left>
+                              <Top>2pt</Top>
+                              <Bottom>1pt</Bottom>
+                            </BorderWidth>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>9pt</FontSize>
+                            <FontWeight>700</FontWeight>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>3</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Parameters!LayoutLocalizedTextCustom.Value(0)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox6">
+                          <rd:DefaultName>textbox6</rd:DefaultName>
+                          <ToolTip>=Parameters!LayoutLocalizedTextCustom.Value(1)</ToolTip>
+                          <Style>
+                            <Color>=Parameters!LayoutColorCodes.Value(6)</Color>
+                            <BackgroundColor>=Parameters!LayoutColorCodes.Value(2)</BackgroundColor>
+                            <BorderColor>
+                              <Default>=Parameters!LayoutColorCodes.Value(6)</Default>
+                              <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                              <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                              <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Left>Solid</Left>
+                              <Right>Solid</Right>
+                              <Top>Solid</Top>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <BorderWidth>
+                              <Left>0.75pt</Left>
+                              <Top>2pt</Top>
+                              <Bottom>1pt</Bottom>
+                            </BorderWidth>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>9pt</FontSize>
+                            <FontWeight>700</FontWeight>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>2</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Parameters!LayoutLocalizedTextCustom.Value(1)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>6mm</Height>
+                </TableRow>
+              </TableRows>
+              <RepeatOnNewPage>true</RepeatOnNewPage>
+              <FixedHeader>true</FixedHeader>
+            </Header>
+            <TableColumns>
+              <TableColumn>
+                <Width>52mm</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>137mm</Width>
+              </TableColumn>
+            </TableColumns>
+            <Height>0.4725in</Height>
+          </Table>
+          <Textbox Name="TableHeader">
+            <Style>
+              <Color>White</Color>
+              <BackgroundColor>DarkBlue</BackgroundColor>
+              <BorderColor>
+                <Default>=Parameters!LayoutColorCodes.Value(6)</Default>
+              </BorderColor>
+              <BorderStyle>
+                <Left>Solid</Left>
+                <Right>Solid</Right>
+                <Top>Solid</Top>
+                <Bottom>Solid</Bottom>
+              </BorderStyle>
+              <BackgroundImage>
+                <Source>Embedded</Source>
+                <Value>aarheaderleft</Value>
+              </BackgroundImage>
+              <FontFamily>Tahoma</FontFamily>
+              <FontWeight>700</FontWeight>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>10pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+            <ZIndex>1</ZIndex>
+            <Height>6mm</Height>
+            <Value>=First(Fields!EventName.Value, "EventProperties") &amp; "    " &amp;
+Parameters!LayoutLocalizedTextCustom.Value(2) &amp; ": " &amp;
+First(Fields!EventDate.Value, "EventProperties")</Value>
+          </Textbox>
+          <Table Name="tblEPA">
+            <DataSetName>EventDetailsEPA</DataSetName>
+            <Visibility>
+              <Hidden>=IIF(Count(Fields!AttrName.Value, "EventDetailsEPA")&gt;0,False,True)</Hidden>
+            </Visibility>
+            <KeepTogether>true</KeepTogether>
+            <Top>1.8cm</Top>
+            <Width>7.44187in</Width>
+            <Details>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox1">
+                          <ToolTip>=CSTR(Fields!AttrName.Value)</ToolTip>
+                          <Style>
+                            <BackgroundColor>=Iif( RowNumber(Nothing) Mod 2, Parameters!LayoutColorCodes.Value(0), Parameters!LayoutColorCodes.Value(1) )</BackgroundColor>
+                            <BorderColor>
+                              <Default>=Parameters!LayoutColorCodes.Value(8)</Default>
+                              <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                              <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                              <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Left>None</Left>
+                              <Right>Solid</Right>
+                              <Top>None</Top>
+                            </BorderStyle>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>9pt</FontSize>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>1</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!AttrName.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox2">
+                          <ToolTip>=CSTR(Fields!AttrValue.Value)</ToolTip>
+                          <Style>
+                            <BackgroundColor>=Iif( RowNumber(Nothing) Mod 2, Parameters!LayoutColorCodes.Value(0), Parameters!LayoutColorCodes.Value(2) )</BackgroundColor>
+                            <BorderColor>
+                              <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                              <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                              <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Left>Solid</Left>
+                              <Right>Solid</Right>
+                              <Top>None</Top>
+                            </BorderStyle>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>9pt</FontSize>
+                            <TextAlign>Left</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!AttrValue.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>6mm</Height>
+                </TableRow>
+              </TableRows>
+            </Details>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox3">
+                          <ToolTip>=Parameters!LayoutLocalizedTextCustom.Value(3)</ToolTip>
+                          <Style>
+                            <Color>=Parameters!LayoutColorCodes.Value(6)</Color>
+                            <BackgroundColor>=Parameters!LayoutColorCodes.Value(1)</BackgroundColor>
+                            <BorderColor>
+                              <Default>=Parameters!LayoutColorCodes.Value(8)</Default>
+                              <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                              <Top>=Parameters!LayoutColorCodes.Value(6)</Top>
+                              <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Left>None</Left>
+                              <Right>Solid</Right>
+                              <Top>Solid</Top>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <BorderWidth>
+                              <Left>0.75pt</Left>
+                              <Top>2pt</Top>
+                              <Bottom>1pt</Bottom>
+                            </BorderWidth>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>9pt</FontSize>
+                            <FontWeight>700</FontWeight>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>3</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Parameters!LayoutLocalizedTextCustom.Value(3)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox4">
+                          <ToolTip>=Parameters!LayoutLocalizedTextCustom.Value(1)</ToolTip>
+                          <Style>
+                            <Color>=Parameters!LayoutColorCodes.Value(6)</Color>
+                            <BackgroundColor>=Parameters!LayoutColorCodes.Value(2)</BackgroundColor>
+                            <BorderColor>
+                              <Default>=Parameters!LayoutColorCodes.Value(6)</Default>
+                              <Left>=Parameters!LayoutColorCodes.Value(9)</Left>
+                              <Right>=Parameters!LayoutColorCodes.Value(8)</Right>
+                              <Bottom>=Parameters!LayoutColorCodes.Value(6)</Bottom>
+                            </BorderColor>
+                            <BorderStyle>
+                              <Left>Solid</Left>
+                              <Right>Solid</Right>
+                              <Top>Solid</Top>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <BorderWidth>
+                              <Left>0.75pt</Left>
+                              <Top>2pt</Top>
+                              <Bottom>1pt</Bottom>
+                            </BorderWidth>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>9pt</FontSize>
+                            <FontWeight>700</FontWeight>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <ZIndex>2</ZIndex>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Parameters!LayoutLocalizedTextCustom.Value(1)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>6mm</Height>
+                </TableRow>
+              </TableRows>
+              <RepeatOnNewPage>true</RepeatOnNewPage>
+              <FixedHeader>true</FixedHeader>
+            </Header>
+            <TableColumns>
+              <TableColumn>
+                <Width>52mm</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>137mm</Width>
+              </TableColumn>
+            </TableColumns>
+          </Table>
+        </ReportItems>
+        <Top>0.03937in</Top>
+        <Style>
+          <BackgroundColor>=Parameters!LayoutColorCodes.Value(12)</BackgroundColor>
+          <BorderColor>
+            <Default>=Parameters!LayoutColorCodes.Value(6)</Default>
+          </BorderColor>
+          <BorderStyle>
+            <Left>Solid</Left>
+            <Right>Solid</Right>
+            <Top>Solid</Top>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+        </Style>
+      </Rectangle>
+    </ReportItems>
+    <Height>31mm</Height>
+    <Style>
+      <BorderColor>
+        <Default>=Parameters!LayoutColorCodes.Value(6)</Default>
+      </BorderColor>
+    </Style>
+  </Body>
+  <Language>=User!Language</Language>
+  <PageFooter>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <ReportItems>
+      <Rectangle Name="rectangle1">
+        <ReportItems>
+          <Rectangle Name="rectangle3">
+            <Left>140.51508mm</Left>
+            <ZIndex>3</ZIndex>
+            <Top>2.67767mm</Top>
+            <Width>0.26467mm</Width>
+            <Style>
+              <BorderColor>
+                <Default>=Parameters!LayoutColorCodes.Value(15)</Default>
+              </BorderColor>
+              <BorderStyle>
+                <Left>Solid</Left>
+                <Right>Solid</Right>
+              </BorderStyle>
+            </Style>
+            <Height>4.70408mm</Height>
+          </Rectangle>
+          <Textbox Name="FooterLeft">
+            <Top>0.41275mm</Top>
+            <Width>138mm</Width>
+            <Style>
+              <Color>#101c63</Color>
+              <BackgroundColor>#dbe2fb</BackgroundColor>
+              <BorderColor>
+                <Default>#101c63</Default>
+              </BorderColor>
+              <FontFamily>Tahoma</FontFamily>
+              <FontSize>9pt</FontSize>
+              <TextAlign>Right</TextAlign>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>10pt</PaddingRight>
+              <PaddingTop>6pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+            <ZIndex>2</ZIndex>
+            <CanGrow>true</CanGrow>
+            <Height>7.99567mm</Height>
+            <Value>=Parameters!LayoutLocalizedText.Value(1) + "   " + FormatDateTime(Globals!ExecutionTime)</Value>
+          </Textbox>
+          <Textbox Name="FooterRight">
+            <Top>0.61925mm</Top>
+            <Width>31mm</Width>
+            <Style>
+              <Color>#101c63</Color>
+              <BackgroundColor>#dbe2fb</BackgroundColor>
+              <BorderColor>
+                <Default>#101c63</Default>
+              </BorderColor>
+              <BorderStyle>
+                <Right>None</Right>
+              </BorderStyle>
+              <FontFamily>Tahoma</FontFamily>
+              <FontSize>9pt</FontSize>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>10pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>6pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+            <ZIndex>1</ZIndex>
+            <Left>142.99998mm</Left>
+            <Height>0.79945cm</Height>
+            <Value>=Parameters!LayoutLocalizedText.Value(2) &amp; " " &amp; CStr(Globals!PageNumber)&amp;" / "&amp;CStr(Globals!TotalPages)</Value>
+          </Textbox>
+          <Image Name="FooterLogo">
+            <Sizing>Fit</Sizing>
+            <Top>0.61925mm</Top>
+            <MIMEType>image/png</MIMEType>
+            <Source>Embedded</Source>
+            <Style>
+              <BorderColor>
+                <Default>#101c63</Default>
+                <Right>#dbe2fb</Right>
+              </BorderColor>
+            </Style>
+            <Left>174.47092mm</Left>
+            <Height>0.79945cm</Height>
+            <Value>aarfooterlogo</Value>
+          </Image>
+        </ReportItems>
+        <Style>
+          <BackgroundColor>=Parameters!LayoutColorCodes.Value(12)</BackgroundColor>
+          <BorderColor>
+            <Default>=Parameters!LayoutColorCodes.Value(15)</Default>
+          </BorderColor>
+          <BorderStyle>
+            <Left>Solid</Left>
+            <Right>Solid</Right>
+            <Top>Solid</Top>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Top>3pt</Top>
+          </BorderWidth>
+        </Style>
+      </Rectangle>
+    </ReportItems>
+    <Height>9mm</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+  </PageFooter>
+  <DataElementName>ArchestrA</DataElementName>
+  <TopMargin>0.9906cm</TopMargin>
+</Report>

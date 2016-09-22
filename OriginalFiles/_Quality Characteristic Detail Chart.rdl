@@ -1,0 +1,1148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition">
+  <Description>Quality Characteristic Detail Chart</Description>
+  <Author>Invensys Systems, Inc.</Author>
+  <DataSources>
+    <DataSource Name="aaReports">
+      <DataSourceReference>aaReports</DataSourceReference>
+      <rd:DataSourceID>54031b10-9cf2-49ae-ac87-71d98e577dc7</rd:DataSourceID>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="LayoutColorCodes">
+      <Fields>
+        <Field Name="ColorID">
+          <DataField>ColorID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ColorCode">
+          <DataField>ColorCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>aaReports</DataSourceName>
+        <CommandText>SELECT ColorID, ColorCode
+FROM aarsLayoutColorCodes
+ORDER BY ColorId</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="LayoutLocalizedText">
+      <Fields>
+        <Field Name="TextId">
+          <DataField>TextId</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="LocalizedText">
+          <DataField>LocalizedText</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>aaReports</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>aarsGetLayoutLocalizedText</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@Scope">
+            <Value>QMQualityCharacteristicDetail</Value>
+          </QueryParameter>
+          <QueryParameter Name="@LanguageCode">
+            <Value>=Parameters!UserLanguage.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="LayoutLocalizedTemplateText">
+      <Fields>
+        <Field Name="TextId">
+          <DataField>TextId</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="LocalizedText">
+          <DataField>LocalizedText</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>aaReports</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>aarsGetLayoutLocalizedText</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@Scope">
+            <Value>ReportTemplate</Value>
+          </QueryParameter>
+          <QueryParameter Name="@LanguageCode">
+            <Value>=Parameters!UserLanguage.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+    </DataSet>
+    <DataSet Name="SystemParameters">
+      <Fields>
+        <Field Name="Value">
+          <DataField>Value</DataField>
+          <rd:TypeName>System.Object</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>aaReports</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>aarsGetSystemParameters</CommandText>
+      </Query>
+    </DataSet>
+    <DataSet Name="ChartImage">
+      <Fields>
+        <Field Name="QCImage">
+          <DataField>QCImage</DataField>
+          <rd:TypeName>System.Byte[]</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>aaReports</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>rpt_QM_ConvertToImage</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@imgInput">
+            <Value>=IIF(Parameters!ChartImageString.Value = "|", Nothing,  Right(Parameters!ChartImageString.Value, Len(Parameters!ChartImageString.Value) - InStr(Parameters!ChartImageString.Value, "|")))</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="aaReportDBConnection">
+      <Fields>
+        <Field Name="TextId">
+          <DataField>TextId</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="LocalizedText">
+          <DataField>LocalizedText</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>aaReports</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>aarsGetLayoutLocalizedText</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@Scope">
+            <Value>QualityCharacteristicDetailDBConnectionString</Value>
+          </QueryParameter>
+          <QueryParameter Name="@LanguageCode">
+            <Value>=Parameters!UserLanguage.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="ChartXmlData">
+      <Fields>
+        <Field Name="Xml">
+          <DataField>Xml</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>aaReports</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>rpt_QM_CharacteristicDetail</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@TimePeriod">
+            <Value>=Parameters!TimePeriod.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@StartingDateTime">
+            <Value>=Parameters!StartingDateTime.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EndingDateTime">
+            <Value>=Parameters!EndingDateTime.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@TimeZoneID">
+            <Value>=Parameters!TimeZoneId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EquipmentID">
+            <Value>=Parameters!EquipmentId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ProductID">
+            <Value>=Parameters!ProductId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Shift">
+            <Value>=Parameters!ShiftId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Severity">
+            <Value>=Parameters!Severity.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@WorkOrder">
+            <Value>=Parameters!WorkOrder.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Operation">
+            <Value>=Parameters!Operation.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@SampleName">
+            <Value>=Parameters!SampleName.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@SamplePriority">
+            <Value>=IIF(Parameters!SamplePriority.Value = -1, Nothing, Parameters!SamplePriority.Value)</Value>
+          </QueryParameter>
+          <QueryParameter Name="@SampleFrequencyType">
+            <Value>=Parameters!SampleFreqType.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Process">
+            <Value>=Parameters!Process.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ItemCategory">
+            <Value>=Parameters!ItemCategory.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@LotNumber">
+            <Value>=Parameters!LotNumber.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@SublotNumber">
+            <Value>=Parameters!SublotNumber.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@CharID">
+            <Value>=Parameters!CharId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@SpecID">
+            <Value>=Parameters!SpecId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@IsSummary">
+            <Value>0</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Body>
+    <ReportItems>
+      <Rectangle Name="rectangle6">
+        <ReportItems>
+          <Textbox Name="textbox2">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>= "Chart " &amp; IIF(Parameters!ChartImageString.Value = "|", "None", Left(Parameters!ChartImageString.Value, InStr(Parameters!ChartImageString.Value, "|") - 1)) &amp; " for Characteristic: " &amp; Parameters!CharName.Value</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                      <Color>White</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Height>6mm</Height>
+            <Width>19cm</Width>
+            <ToolTip>=Parameters!CharName.Value</ToolTip>
+            <DataElementOutput>NoOutput</DataElementOutput>
+            <Style>
+              <Border>
+                <Color>=Parameters!LayoutColorCodes.Value(6)</Color>
+              </Border>
+              <BackgroundColor>DarkBlue</BackgroundColor>
+              <BackgroundImage>
+                <Source>Embedded</Source>
+                <Value>aarheaderleft</Value>
+              </BackgroundImage>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>10pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>3pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Image Name="imgChart">
+            <Source>Database</Source>
+            <Value>=First(Fields!QCImage.Value, "ChartImage")</Value>
+            <MIMEType>image/bmp</MIMEType>
+            <Sizing>FitProportional</Sizing>
+            <Top>0.6cm</Top>
+            <Height>4.90297in</Height>
+            <Width>19cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Image>
+        </ReportItems>
+        <DataElementOutput>ContentsOnly</DataElementOutput>
+        <Height>13.05355cm</Height>
+        <Width>19cm</Width>
+        <Style>
+          <Border>
+            <Color>=Parameters!LayoutColorCodes.Value(6)</Color>
+          </Border>
+          <TopBorder>
+            <Style>Solid</Style>
+          </TopBorder>
+          <RightBorder>
+            <Style>Solid</Style>
+          </RightBorder>
+        </Style>
+      </Rectangle>
+    </ReportItems>
+    <Height>130.53552mm</Height>
+    <Style>
+      <Border>
+        <Color>White</Color>
+        <Style>None</Style>
+        <Width>0.5pt</Width>
+      </Border>
+    </Style>
+  </Body>
+  <ReportParameters>
+    <ReportParameter Name="UserLanguage">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>=Code.CultureLanguageCode()</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>UserLanguage</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="MaxTextLength">
+      <DataType>Integer</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>44</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>MaxTextLength</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="LayoutIsGrayScale">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>false</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Use grayscale colors</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="SystemParameters">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>SystemParameters</DataSetName>
+          <ValueField>Value</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>SystemParameters</Prompt>
+      <Hidden>true</Hidden>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="LayoutLocalizedText">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>LayoutLocalizedText</DataSetName>
+          <ValueField>LocalizedText</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="LayoutLocalizedTemplateText">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>LayoutLocalizedTemplateText</DataSetName>
+          <ValueField>LocalizedText</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="LayoutColorCodes">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>LayoutColorCodes</DataSetName>
+          <ValueField>ColorCode</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="DBConnectionString">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>aaReportDBConnection</DataSetName>
+          <ValueField>LocalizedText</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>DBConnectionString</Prompt>
+      <Hidden>true</Hidden>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>aaReportDBConnection</DataSetName>
+          <ValueField>LocalizedText</ValueField>
+          <LabelField>LocalizedText</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="CharName">
+      <DataType>String</DataType>
+      <Prompt>ChartName</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="TimePeriod">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Current Shift</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>TimePeriod</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="StartingDateTime">
+      <DataType>DateTime</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>04/03/2012 08:00:00</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>StartingDateTime</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="EndingDateTime">
+      <DataType>DateTime</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>04/03/2012 23:00:00</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>EndingDateTime</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="TimeZoneId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>-1</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>TimeZoneId</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="EquipmentId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=""</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>EquipmentId</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ProductId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=""</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ProductId</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ShiftId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=""</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ShiftId</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Severity">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=""</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Severity</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="WorkOrder">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=""</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>WorkOrder</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Operation">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=""</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Operation</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="SampleName">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=""</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>SampleName</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="SamplePriority">
+      <DataType>Integer</DataType>
+      <Prompt>SamplePriority</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="SampleFreqType">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=""</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>SampleFreqType</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Process">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=""</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Process</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ItemCategory">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=""</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ItemCategory</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="LotNumber">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=""</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>LotNumber</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="SublotNumber">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=""</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>SublotNumber</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CharId">
+      <DataType>Integer</DataType>
+      <Prompt>CharId</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="SpecId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=""</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>SpecId</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="XmlChartParam">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>ChartXmlData</DataSetName>
+          <ValueField>Xml</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>XmlChartParam</Prompt>
+      <Hidden>true</Hidden>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="ChartImageString">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=Code.GetChartImage(Parameters!XmlChartParam.Value(0))</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ReportParameter1</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+  </ReportParameters>
+  <Code>    Function CultureLanguageCode() As String
+        Dim oCulture As System.Globalization.CultureInfo
+        CultureLanguageCode = LCase(oCulture.CurrentUICulture.Name)
+    End Function
+
+    Function ClipString(ByVal aString As String, ByVal Max As Integer) As String
+        aString = Trim(aString)
+        If Len(aString) &gt; Max And Max &gt; 0 Then
+            ClipString = Left(aString, Max - 1) &amp; "…"
+        Else
+            ClipString = aString
+        End If
+    End Function
+
+    Function SectionHidden(ByVal SectionList As Parameter, ByVal SectionName As String) As Boolean
+
+        Dim Position As Integer = 0
+        Dim IsVisible As Boolean = False
+
+        Do
+            If SectionList.Value(Position) = "ALL" Or SectionList.Value(Position) = SectionName Then
+                IsVisible = True
+            End If
+            Position = Position + 1
+        Loop While Position &lt; SectionList.Value.Length And Not (IsVisible)
+
+        SectionHidden = Not (IsVisible)
+    End Function
+
+    Function ChartColor(ByVal AllParameters As Parameters, ByVal Index As Integer) As String
+        Dim BaseColor As Integer = 18
+        Dim BaseGray As Integer = 30
+        Dim IsGray As Boolean = AllParameters("LayoutIsGrayScale").Value
+
+        If IsGray Then
+            ChartColor = AllParameters("LayoutColorCodes").Value(BaseGray + Index)
+        Else
+            ChartColor = AllParameters("LayoutColorCodes").Value(BaseColor + Index)
+        End If
+    End Function
+
+    Function TrendURL(ByVal SystemParameters As Parameter, ReportServerUrl As String, TagName As String, StartTime As DateTime, EndTime As DateTime) As String
+        Dim ServerStart As Integer
+        If (ReportServerUrl = "") Then
+            TrendURL = SystemParameters.Value(4) ' Hostname
+        Else
+            ServerStart = InStr(ReportServerUrl, "//") + 2
+            TrendURL = Mid(ReportServerUrl, 1, InStr(ServerStart, ReportServerUrl, "/") - 1)
+        End If
+        TrendURL = TrendURL &amp; SystemParameters.Value(3) ' Virtual directory
+        TrendURL = TrendURL &amp; "/Applications/HistClientReportingSite/redirect.asp?page=Trend.aspx"
+        TrendURL = TrendURL &amp; "?SV=1"
+        TrendURL = TrendURL &amp; SystemParameters.Value(5)
+        TrendURL = TrendURL &amp; "&amp;Tags=" &amp; TagName
+        TrendURL = TrendURL &amp; "&amp;Start=" &amp; Format(StartTime, "yyyy-MM-dd hh:mm:ss")
+        TrendURL = TrendURL &amp; "&amp;End=" &amp; Format(EndTime, "yyyy-MM-dd hh:mm:ss")
+    End Function
+
+    Function FormatValue(ByVal PV As Object, ByVal Precision As Integer) As String
+        If IsNumeric(PV) Then
+            Dim Places As Integer = 5 - CInt(System.Math.Log10(System.Math.Abs(CDbl(PV)))) + Precision
+            If Places &lt; 0 Then
+                Places = 1
+            End If
+            FormatValue = FormatNumber(CDbl(PV), Places)
+        Else
+            FormatValue = ClipString(PV, 14)
+        End If
+    End Function
+
+    Function DefaultIgnoreStartEndDateTime(ByVal TimePeriod As String) As Boolean
+        DefaultIgnoreStartEndDateTime = True
+        If TimePeriod = "Custom" Then
+            DefaultIgnoreStartEndDateTime = False
+        End If
+    End Function
+
+
+      '------------------------------------------------Quinn Curtis Chart Control Function ----------------------------------------------  
+    Function GetChartImage(ByVal sXml As String) As String
+
+        Dim rawDs As System.Data.DataSet = New System.Data.DataSet("Row")
+        rawDs.EnforceConstraints = False
+
+        'A copy of this schema can be found in TFS
+        Dim sSchema As String = "&lt;xsd:schema xmlns:xsd='http://www.w3.org/2001/XMLSchema' targetNamespace='urn:schemas-microsoft-com:sql:SqlRowSet1' elementFormDefault='qualified'&gt;&lt;xsd:element name='Row'&gt;&lt;xsd:complexType&gt;&lt;xsd:sequence&gt;&lt;xsd:element name='sample_id' /&gt;&lt;xsd:element name='char_name' /&gt;&lt;xsd:element name='requested_time_local' /&gt;&lt;xsd:element name='primary_chart_value' /&gt;&lt;xsd:element name='primary_target' /&gt;&lt;xsd:element name='primary_lcl' /&gt;&lt;xsd:element name='primary_ucl' /&gt;&lt;xsd:element name='secondary_target' /&gt;&lt;xsd:element name='secondary_lcl' /&gt;&lt;xsd:element name='secondary_ucl' /&gt;&lt;xsd:element name='sample_size' /&gt;&lt;xsd:element name='points_per_page' /&gt;&lt;xsd:element name='default_chart_name' /&gt;&lt;xsd:element name='indx' /&gt;&lt;xsd:element name='sample_interval' /&gt;&lt;xsd:element name='chart_sample_size' /&gt;&lt;xsd:element name='max_sample_size' /&gt;&lt;/xsd:sequence&gt;&lt;/xsd:complexType&gt;&lt;/xsd:element&gt;&lt;/xsd:schema&gt;"
+
+        Dim result As String
+        Dim imgString As String = ""
+        Dim chartName As String = ""
+
+        com.quinncurtis.spcchartnet.SPCTimeVariableControlChart.DefaultChartFontString = "Times"
+        com.quinncurtis.spcchartnet.SPCChartObjects.AxisTitleFont = New System.Drawing.Font("Times", 11, System.Drawing.FontStyle.Regular)
+        com.quinncurtis.spcchartnet.SPCChartObjects.AxisLabelFont = New System.Drawing.Font("Times", 10, System.Drawing.FontStyle.Regular)
+        com.quinncurtis.spcchartnet.SPCChartObjects.ControlLimitLabelFont = New System.Drawing.Font("Times", 10, System.Drawing.FontStyle.Regular)
+
+        Dim sr As System.IO.StringReader = New System.IO.StringReader(sSchema)
+        rawDs.ReadXmlSchema(sr)
+
+        sXml = sXml.Replace("&lt;Row&gt;", "&lt;Row xmlns='urn:schemas-microsoft-com:sql:SqlRowSet1'&gt;")
+
+        Dim xmlReader As System.IO.StringReader = New System.IO.StringReader(sXml)
+        rawDs.ReadXml(xmlReader)
+
+        Dim rawSampleData As System.Data.DataTable = rawDs.Tables("Row")
+
+        If rawSampleData IsNot Nothing AndAlso rawSampleData.Rows.Count &gt; 0 Then
+
+            ' get chart config data
+            Dim charType As Integer = 0
+            Dim numSamplesPerSubGroup As Integer = 0
+            Dim numDataPointsInView As Integer = 0
+            'Dim timeIncrementMinutes As Double = 0
+
+            numSamplesPerSubGroup = CInt(rawSampleData.Rows(0).Item("chart_sample_size"))
+            'timeIncrementMinutes = CDbl(rawSampleData.Rows(0).Item("sample_interval"))
+            numDataPointsInView = CInt(rawSampleData.Rows(0).Item("points_per_page"))
+            chartName = CStr(rawSampleData.Rows(0).Item("default_chart_name"))
+
+            If chartName.EndsWith("XBar + Range") Or chartName.EndsWith("XBar + Sigma") Then
+
+                Dim spcChart As com.quinncurtis.spcchartnet.SPCBatchVariableControlChart
+                spcChart = New com.quinncurtis.spcchartnet.SPCBatchVariableControlChart
+
+                If chartName.EndsWith("- XBar + Range") Then
+                    charType = com.quinncurtis.spcchartnet.SPCControlChartData.MEAN_RANGE_CHART
+                Else
+                    'for xbar+sigma chart, need to decide if sample size are the same (MEAN_SIGMA_CHART) or not the same (MEAN_SIGMA_CHART_VSS)
+                    If IsSameSampleSize(rawSampleData) Then
+                        charType = com.quinncurtis.spcchartnet.SPCControlChartData.MEAN_SIGMA_CHART
+                    Else
+                        charType = com.quinncurtis.spcchartnet.SPCControlChartData.MEAN_SIGMA_CHART_VSS
+                    End If
+                End If
+
+                numSamplesPerSubGroup = CInt(rawSampleData.Rows(0).Item("max_sample_size"))
+
+                ConfigureBatchVariableControlChart(spcChart, charType, numSamplesPerSubGroup, numDataPointsInView, 1)
+
+                AddBatchChartData_MultipleSample(spcChart, numSamplesPerSubGroup, rawSampleData)
+
+                spcChart.AutoScalePrimaryChartYRange()
+                spcChart.AutoScaleSecondaryChartYRange()
+
+                spcChart.RebuildChartUsingCurrentData()
+
+                imgString = GetChartImageBinaryString(spcChart)
+
+            ElseIf chartName.EndsWith("IX + MR") Or chartName.EndsWith("MA + Range") Or chartName.EndsWith("MA + Sigma") Then
+
+                Dim spcChart As com.quinncurtis.spcchartnet.SPCBatchVariableControlChart
+                spcChart = New com.quinncurtis.spcchartnet.SPCBatchVariableControlChart
+
+                If chartName.EndsWith("- IX + MR") Then
+                    charType = com.quinncurtis.spcchartnet.SPCControlChartData.INDIVIDUAL_RANGE_CHART
+                ElseIf chartName.EndsWith("- MA + Range") Then
+                    charType = com.quinncurtis.spcchartnet.SPCControlChartData.MAMR_CHART
+                Else 'charName.EndsWith("- MA + Sigma") 
+                    charType = com.quinncurtis.spcchartnet.SPCControlChartData.MAMS_CHART
+                End If
+
+	Dim movAvgSpan As Integer = numSamplesPerSubGroup
+                numSamplesPerSubGroup = 1
+
+                ConfigureBatchVariableControlChart(spcChart, charType, numSamplesPerSubGroup, numDataPointsInView, movAvgSpan)
+
+                AddBatchChartData_SingleSample(spcChart, rawSampleData)
+
+                spcChart.AutoScalePrimaryChartYRange()
+                spcChart.AutoScaleSecondaryChartYRange()
+
+                spcChart.RebuildChartUsingCurrentData()
+
+                imgString = GetChartImageBinaryString(spcChart)
+
+            ElseIf chartName.EndsWith("- p") Or chartName.EndsWith("- np") Or chartName.EndsWith("- u") Or chartName.EndsWith("- c") Or chartName.EndsWith("- DPMO") Then
+
+                Dim spcChart As com.quinncurtis.spcchartnet.SPCBatchAttributeControlChart
+                spcChart = New com.quinncurtis.spcchartnet.SPCBatchAttributeControlChart
+
+                If chartName.EndsWith("- p") Then
+                    charType = com.quinncurtis.spcchartnet.SPCControlChartData.PERCENT_DEFECTIVE_PARTS_CHART
+                ElseIf chartName.EndsWith("- np") Then
+                    charType = com.quinncurtis.spcchartnet.SPCControlChartData.NUMBER_DEFECTIVE_PARTS_CHART
+                ElseIf chartName.EndsWith("- u") Then
+                    charType = com.quinncurtis.spcchartnet.SPCControlChartData.NUMBER_DEFECTS_PERUNIT_CHART
+                ElseIf chartName.EndsWith("- c") Then
+                    charType = com.quinncurtis.spcchartnet.SPCControlChartData.NUMBER_DEFECTS_CHART
+                Else 'charName.EndsWith("- DPMO") 
+                    charType = com.quinncurtis.spcchartnet.SPCControlChartData.NUMBER_DEFECTS_PER_MILLION_CHART
+                End If
+
+                numSamplesPerSubGroup = 1
+                Dim numCategories As Integer = 1
+
+                ConfigureBatchAttributeControlChart(spcChart, charType, numCategories, numSamplesPerSubGroup, numDataPointsInView)
+
+                AddBatchChartData_SingleSample(spcChart, rawSampleData)
+
+                spcChart.AutoScalePrimaryChartYRange()
+                spcChart.RebuildChartUsingCurrentData()
+
+                imgString = GetChartImageBinaryString(spcChart)
+            Else
+                'do nothing
+            End If
+
+        End If
+
+        result = chartName &amp; "|" &amp; imgString
+
+        Return result
+
+    End Function
+
+    Function IsSameSampleSize(ByVal rawSampleData As System.Data.DataTable) As Boolean
+
+        Dim result As Boolean = rawSampleData.Rows.Count = rawSampleData.Select("chart_sample_size = max_sample_size").Length
+        Return result
+
+    End Function
+
+     Sub ConfigureBatchVariableControlChart(ByRef spcChart As com.quinncurtis.spcchartnet.SPCBatchVariableControlChart, ByVal charType As String, ByVal numSamplesPerSubGroup As Integer, ByVal numDataPointsInView As Integer, Byval movAvgSpan As Integer)
+
+        spcChart.InitSPCBatchVariableControlChart(charType, numSamplesPerSubGroup, numDataPointsInView)
+
+        ' set chart size and start position
+        spcChart.Size = New System.Drawing.Size(800, 600)
+        spcChart.GraphStartPosX = 0.125
+
+        'spcChart.XAxisStringLabelMode = com.quinncurtis.spcchartnet.SPCChartObjects.AXIS_LABEL_MODE_TIME
+        spcChart.XAxisStringLabelMode = com.quinncurtis.spcchartnet.SPCChartObjects.AXIS_LABEL_MODE_DEFAULT
+
+        If charType = com.quinncurtis.spcchartnet.SPCControlChartData.INDIVIDUAL_RANGE_CHART Then
+
+        ElseIf charType = com.quinncurtis.spcchartnet.SPCControlChartData.MAMR_CHART Then
+            ' Number of time periods in moving average
+            spcChart.ChartData.MA_w =movAvgSpan 
+
+            ' Plot individual sampled values as a scatter plot
+            spcChart.PrimaryChart.PlotMeasurementValues = False
+
+        ElseIf charType = com.quinncurtis.spcchartnet.SPCControlChartData.MAMS_CHART Then
+            ' Number of time periods in moving average
+            spcChart.ChartData.MA_w = movAvgSpan 
+
+            ' Plot individual sampled values as a scatter plot
+            spcChart.PrimaryChart.PlotMeasurementValues = False
+
+            'spcChart.ChartData.ProcessMean = 10.0
+            'spcChart.ChartData.ProcessMeanOverride = True
+
+            'spcChart.ChartData.ProcessSigma = 1.0
+            'spcChart.ChartData.ProcessSigmaOverride = True
+        Else
+
+        End If
+
+        spcChart.UseNoTable(True, True, False, "") ' no histogram and chart title
+
+        ' no data and notes tooltips
+        spcChart.EnableDataToolTip = False
+        spcChart.ChartAlarmEmphasisMode = com.quinncurtis.spcchartnet.SPCChartBase.ALARM_HIGHLIGHT_SYMBOL
+
+        ' no scroll bar
+        spcChart.EnableScrollBar = False
+
+        ' no histograms
+        spcChart.PrimaryChart.DisplayFrequencyHistogram = False
+        spcChart.SecondaryChart.DisplayFrequencyHistogram = False
+
+    End Sub
+
+    Sub ConfigureBatchAttributeControlChart(ByRef spcChart As com.quinncurtis.spcchartnet.SPCBatchAttributeControlChart, ByVal charType As String, ByVal numCategories As Integer, ByVal numSamplesPerSubGroup As Integer, ByVal numDataPointsInView As Integer)
+
+        'spcChart.InitSPCTimeAttributeControlChart(charType, numCategories, numSamplesPerSubGroup, numDataPointsInView, timeIncrementMinutes)
+        spcChart.InitSPCBatchAttributeControlChart(charType, numCategories, numSamplesPerSubGroup, numDataPointsInView)
+
+        ' set chart size and start position
+        spcChart.Size = New System.Drawing.Size(800, 600)
+        spcChart.GraphStartPosX = 0.125
+
+        spcChart.UseNoTable(True, False, False, "") ' no table and chart title
+
+        ' No scroll bar
+        spcChart.EnableScrollBar = False
+
+    End Sub
+
+    Sub AddBatchChartData_MultipleSample(ByRef spcChart As com.quinncurtis.spcchartnet.SPCChartBase, ByVal sampleSize As Integer, ByVal rawSampleData As System.Data.DataTable)
+
+        Dim tempSampleIndex As Integer = 0
+        Dim tempSampleId As Integer = 0
+        Dim currentSampleId As Integer = -1
+
+        Dim samples As New com.quinncurtis.chart2dnet.DoubleArray
+        Dim sampleTime As DateTime
+        Dim isFirstRow As Boolean = True
+
+        Dim primaryTarget As Double = 0
+        Dim primaryLcl As Double = 0
+        Dim primaryUcl As Double = 0
+        Dim secondaryTarget As Double = 0
+        Dim secondaryLcl As Double = 0
+        Dim secondaryUcl As Double = 0
+
+        Dim showLimits As Boolean = True
+
+        For Each dr As System.Data.DataRow In rawSampleData.Rows
+
+            If isFirstRow Then
+                samples = New com.quinncurtis.chart2dnet.DoubleArray(sampleSize)
+                showLimits = GetControlLimitsForSubGroup(dr, primaryTarget, primaryLcl, primaryUcl, secondaryTarget, secondaryLcl, secondaryUcl)
+            End If
+
+            tempSampleId = CInt(dr.Item("sample_id"))
+
+            If tempSampleId &lt;&gt; currentSampleId And Not isFirstRow Then
+                ' Add the new sample subgroup to the chart
+
+                If spcChart.SPCChartType = com.quinncurtis.spcchartnet.SPCControlChartData.MEAN_RANGE_CHART And tempSampleIndex &lt; sampleSize Then
+                    'need to add some dummy samples in the subgroup to make it a "Full" subgroup
+                    FillSamplesWithDummyData(samples, tempSampleIndex - 1, sampleSize)
+                End If
+
+                Dim timeStamp As New com.quinncurtis.chart2dnet.ChartCalendar(sampleTime)
+
+                If showLimits Then
+                    UpdateChartControlLimits(spcChart, primaryTarget, primaryLcl, primaryUcl, secondaryTarget, secondaryLcl, secondaryUcl)
+                Else
+                    spcChart.PrimaryChart.EnableDefaultLimits(False, False)
+                    spcChart.SecondaryChart.EnableDefaultLimits(False, False)
+                End If
+
+                spcChart.ChartData.AddNewSampleRecord(timeStamp, samples)
+
+                'initiate new samples for next sub group
+                tempSampleIndex = 0
+                If spcChart.SPCChartType = com.quinncurtis.spcchartnet.SPCControlChartData.MEAN_SIGMA_CHART_VSS Then
+                    sampleSize = CInt(dr("chart_sample_size"))
+                End If
+
+                samples = New com.quinncurtis.chart2dnet.DoubleArray(sampleSize)
+
+                showLimits = GetControlLimitsForSubGroup(dr, primaryTarget, primaryLcl, primaryUcl, secondaryTarget, secondaryLcl, secondaryUcl)
+
+            End If
+
+            If tempSampleIndex &lt; sampleSize Then
+                sampleTime = CDate(dr("requested_time_local"))
+                samples(tempSampleIndex) = CDbl(dr("primary_chart_value"))
+            End If
+
+            tempSampleIndex += 1
+            currentSampleId = tempSampleId
+            isFirstRow = False
+        Next
+
+        If isFirstRow = False Then
+            ' Add the last sample subgroup to the chart
+            If spcChart.SPCChartType = com.quinncurtis.spcchartnet.SPCControlChartData.MEAN_RANGE_CHART And tempSampleIndex &lt; sampleSize Then
+                'need to add some dummy samples in the subgroup to make it a "Full" subgroup
+                FillSamplesWithDummyData(samples, tempSampleIndex - 1, sampleSize)
+            End If
+            Dim timeStamp As New com.quinncurtis.chart2dnet.ChartCalendar(sampleTime)
+
+            If showLimits Then
+                UpdateChartControlLimits(spcChart, primaryTarget, primaryLcl, primaryUcl, secondaryTarget, secondaryLcl, secondaryUcl)
+            Else
+                spcChart.PrimaryChart.EnableDefaultLimits(False, False)
+                spcChart.SecondaryChart.EnableDefaultLimits(False, False)
+            End If
+
+            spcChart.ChartData.AddNewSampleRecord(timeStamp, samples)
+        End If
+
+    End Sub
+
+    Sub AddBatchChartData_SingleSample(ByRef spcChart As com.quinncurtis.spcchartnet.SPCChartBase, ByVal rawSampleData As System.Data.DataTable)
+
+        Dim samples As New com.quinncurtis.chart2dnet.DoubleArray
+        Dim sampleTime As DateTime
+
+        Dim primaryTarget As Double = 0
+        Dim primaryLcl As Double = 0
+        Dim primaryUcl As Double = 0
+        Dim secondaryTarget As Double = 0
+        Dim secondaryLcl As Double = 0
+        Dim secondaryUcl As Double = 0
+
+        Dim batchCounter As Integer = 0
+        Dim showLimits As Boolean = True
+
+        For Each dr As System.Data.DataRow In rawSampleData.Rows
+
+            sampleTime = CDate(dr("requested_time_local"))
+            Dim timeStamp As New com.quinncurtis.chart2dnet.ChartCalendar(sampleTime)
+
+            samples = New com.quinncurtis.chart2dnet.DoubleArray(1)
+            samples(0) = CDbl(dr("primary_chart_value"))
+
+            showLimits = GetControlLimitsForSubGroup(dr, primaryTarget, primaryLcl, primaryUcl, secondaryTarget, secondaryLcl, secondaryUcl)
+
+            If showLimits Then
+                UpdateChartControlLimits(spcChart, primaryTarget, primaryLcl, primaryUcl, secondaryTarget, secondaryLcl, secondaryUcl)
+            Else
+                spcChart.PrimaryChart.EnableDefaultLimits(False, False)
+                spcChart.SecondaryChart.EnableDefaultLimits(False, False)
+            End If
+
+            spcChart.ChartData.AddNewSampleRecord(batchCounter, timeStamp, samples)
+
+            batchCounter += 1
+        Next
+
+    End Sub
+
+    Function GetControlLimitsForSubGroup(ByVal dr As System.Data.DataRow, ByRef primaryTarget As Double, ByRef primaryLcl As Double, ByRef primaryUcl As Double, ByRef secondaryTarget As Double, ByRef secondaryLcl As Double, ByRef secondaryUcl As Double) As Boolean
+
+        Dim showLimits As Boolean = True
+
+        If Not dr.Item("primary_target") Is System.DBNull.Value Then
+            primaryTarget = CDbl(dr.Item("primary_target"))
+        Else
+            primaryTarget = 0
+            showLimits = False
+        End If
+
+        If Not dr.Item("primary_lcl") Is System.DBNull.Value Then
+            primaryLcl = CDbl(dr.Item("primary_lcl"))
+        Else
+            primaryLcl = 0
+            showLimits = False
+        End If
+
+        If Not dr.Item("primary_ucl") Is System.DBNull.Value Then
+            primaryUcl = CDbl(dr.Item("primary_ucl"))
+        Else
+            primaryUcl = 0
+            showLimits = False
+        End If
+
+        If Not dr.Item("secondary_target") Is System.DBNull.Value Then
+            secondaryTarget = CDbl(dr.Item("secondary_target"))
+        Else
+            secondaryTarget = 0
+        End If
+
+        If Not dr.Item("secondary_lcl") Is System.DBNull.Value Then
+            secondaryLcl = CDbl(dr.Item("secondary_lcl"))
+        Else
+            secondaryLcl = 0
+        End If
+
+        If Not dr.Item("secondary_ucl") Is System.DBNull.Value Then
+            secondaryUcl = CDbl(dr.Item("secondary_ucl"))
+        Else
+            secondaryUcl = 0
+        End If
+
+        Return showLimits
+
+    End Function
+
+    Sub UpdateChartControlLimits(ByRef spcChart As com.quinncurtis.spcchartnet.SPCChartBase, ByVal primaryTargetValue As Double, ByVal primaryLclValue As Double, ByVal primaryUclValue As Double, ByVal secondaryTargetValue As Double, ByVal secondaryLclValue As Double, ByVal secondaryUclValue As Double)
+
+        Dim controllimitvalues() As Double = {primaryTargetValue, primaryLclValue, primaryUclValue, secondaryTargetValue, secondaryLclValue, secondaryUclValue}
+        spcChart.ChartData.SetControlLimitValues(controllimitvalues)
+
+    End Sub
+
+    Sub FillSamplesWithDummyData(ByRef samples As com.quinncurtis.chart2dnet.DoubleArray, ByVal tempSampleIndex As Integer, ByVal sampleSize As Integer)
+
+        Dim avgSampleValue As Double
+        Dim tempTotal As Double
+
+        For i As Integer = 0 To tempSampleIndex
+            tempTotal += samples(i)
+        Next
+
+        avgSampleValue = tempTotal / (tempSampleIndex + 1)
+        For i As Integer = tempSampleIndex + 1 To sampleSize - 1
+            samples(i) = avgSampleValue
+        Next
+
+    End Sub
+
+    Function GetChartImageBinaryString(ByRef spcChart As com.quinncurtis.chart2dnet.ChartView) As String
+
+        Dim bi As com.quinncurtis.chart2dnet.BufferedImage
+        bi = New com.quinncurtis.chart2dnet.BufferedImage(spcChart, System.Drawing.Imaging.ImageFormat.Jpeg)
+
+        'render the image
+        bi.Render()
+
+        'save the image
+        'bi.SaveImage("c:\testchart1.jpg")
+
+        Dim img As System.Drawing.Image
+        img = bi.GetBufferedImage
+
+        Dim ms As System.IO.MemoryStream
+        ms = New System.IO.MemoryStream
+
+        img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
+        Dim s As String = BitConverter.ToString(ms.ToArray)
+
+        s = "0x" + s.Replace("-", "")
+
+        bi = Nothing
+
+        Return s
+
+    End Function</Code>
+  <Width>19cm</Width>
+  <Page>
+    <PageHeight>29.7cm</PageHeight>
+    <PageWidth>21cm</PageWidth>
+    <InteractiveHeight>260mm</InteractiveHeight>
+    <LeftMargin>0.9906cm</LeftMargin>
+    <RightMargin>0.9906cm</RightMargin>
+    <TopMargin>0.9906cm</TopMargin>
+    <BottomMargin>0.9906cm</BottomMargin>
+    <ColumnSpacing>10mm</ColumnSpacing>
+    <Style />
+  </Page>
+  <EmbeddedImages>
+    <EmbeddedImage Name="aarheaderleft">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <CodeModules>
+    <CodeModule>QCChart2DNet, Version=2.2.0.1, Culture=neutral, PublicKeyToken=777bb05e591192d4</CodeModule>
+    <CodeModule>QCSPCChartNet, Version=2.2.0.1, Culture=neutral, PublicKeyToken=f5ea9c29edc9f4ca</CodeModule>
+    <CodeModule>System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</CodeModule>
+    <CodeModule>System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</CodeModule>
+    <CodeModule>System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</CodeModule>
+    <CodeModule>System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</CodeModule>
+  </CodeModules>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <DataElementName>ArchestrA</DataElementName>
+  <rd:ReportID>90c0bc17-d418-4544-8e04-9930f87651de</rd:ReportID>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+</Report>
